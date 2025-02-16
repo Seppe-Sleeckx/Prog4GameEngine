@@ -1,31 +1,37 @@
 #pragma once
 #include <memory>
+#include <vector>
+
+#include "Component.h"
 #include "Transform.h"
 
 namespace dae
 {
-	class Texture2D;
-
-	// todo: this should become final.
-	class GameObject 
+	class GameObject final
 	{
 	public:
-		virtual void Update();
-		virtual void Render() const;
-
-		void SetTexture(const std::string& filename);
-		void SetPosition(float x, float y);
-
 		GameObject() = default;
-		virtual ~GameObject();
+		~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 
+		void Update(const float delta_time);
+		void FixedUpdate(const float);
+		void Render() const;
+
+		void AddComponent(std::shared_ptr<Component> component);
+		template<typename CT>
+		bool RemoveComponent();
+		template<typename CT>
+		std::shared_ptr<CT> GetComponentByType() const;
+
+		void SetPosition(float x, float y);
+		const Transform& GetTransform() const;
+
 	private:
 		Transform m_transform{};
-		// todo: mmm, every gameobject has a texture? Is that correct?
-		std::shared_ptr<Texture2D> m_texture{};
+		std::vector<std::shared_ptr<Component>> m_components;
 	};
 }
