@@ -1,9 +1,13 @@
 #pragma once
+#include "Component.h"
 #include "TextComponent.h"
 #include <memory>
 
+
 namespace dae
 {
+	class GameObject;
+
 	class FPSComponent final : public Component
 	{
 	public:
@@ -20,9 +24,10 @@ namespace dae
 		FPSComponent& operator=(FPSComponent&& other) = delete;
 
 		virtual void Update(const float delta_time);
+		virtual void Render() const override;
 
 	private:
-		std::shared_ptr<TextComponent> m_textComponent;
+		std::unique_ptr<TextComponent> m_textComponent;
 	};
 }
 

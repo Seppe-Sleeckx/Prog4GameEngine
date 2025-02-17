@@ -16,3 +16,8 @@ void FPSComponent::Update(const float delta_time)
 	double fps = 1.0 / delta_time;
 	m_textComponent->SetText(std::format("FPS: {:.1f}", fps));
 }
+
+void FPSComponent::Render() const
+{
+	m_textComponent->Render();
+}
