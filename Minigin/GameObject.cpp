@@ -49,13 +49,13 @@ bool GameObject::RemoveComponent()
 }
 
 template<typename CT>
-std::shared_ptr<CT> GameObject::GetComponentByType() const
+CT* GameObject::GetComponentByType() const
 {
 	for (auto& component : m_components)
 	{
 		std::shared_ptr<CT> casted_component = std::dynamic_pointer_cast<CT>(component);
 		if (casted_component)
-			return casted_component;
+			return casted_component.get();
 	}
 	return nullptr;
 }

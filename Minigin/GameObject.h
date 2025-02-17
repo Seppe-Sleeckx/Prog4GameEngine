@@ -25,7 +25,7 @@ namespace dae
 		template<typename CT>
 		bool RemoveComponent();
 		template<typename CT>
-		std::shared_ptr<CT> GetComponentByType() const;
+		CT* GetComponentByType() const;
 
 		void SetPosition(float x, float y);
 		const Transform& GetTransform() const;
