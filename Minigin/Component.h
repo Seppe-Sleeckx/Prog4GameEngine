@@ -17,7 +17,7 @@ namespace dae
 		virtual void Render() const = 0;
 
 	protected:
-		std::weak_ptr<GameObject> m_gameObject;
+		std::weak_ptr<GameObject> m_gameObject; //Necessary for communication between components
 	};
 }
 
