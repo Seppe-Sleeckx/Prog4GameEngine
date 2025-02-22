@@ -21,11 +21,33 @@ namespace dae
 		void FixedUpdate(const float);
 		void Render() const;
 
-		void AddComponent(std::shared_ptr<Component> component);
+		void AddComponent(std::unique_ptr<Component> component);
 		template<typename CT>
-		bool RemoveComponent();
+		bool RemoveComponent()
+		{
+			for (size_t i = 0; i < m_components.size(); i++)
+			{
+				std::shared_ptr<CT> casted_component = std::dynamic_pointer_cast<CT>(m_components[i]);
+				if (casted_component)
+				{
+					m_components.erase(m_components.begin() + i);
+					return true;
+				}
+			}
+			return false;
+		}
+
 		template<typename CT>
-		CT* GetComponentByType() const;
+		CT* GetComponentByType() const
+		{
+			for (auto& component : m_components)
+			{
+				std::shared_ptr<CT> casted_component = std::dynamic_pointer_cast<CT>(component);
+				if (casted_component)
+					return casted_component.get();
+			}
+			return nullptr;
+		}
 
 		void SetPosition(float x, float y);
 		const Transform& GetTransform() const;

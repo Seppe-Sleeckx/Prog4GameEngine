@@ -28,36 +28,11 @@ void GameObject::Render() const
 	}
 }
 
-void GameObject::AddComponent(std::shared_ptr<Component> component)
+void GameObject::AddComponent(std::unique_ptr<Component> component)
 {
-	m_components.emplace_back(std::move(component));
-}
-
-template<typename CT>
-bool GameObject::RemoveComponent()
-{
-	for (size_t i = 0; i < m_components.size(); i++)
-	{
-		std::shared_ptr<CT> casted_component = std::dynamic_pointer_cast<CT>(m_components[i]);
-		if (casted_component)
-		{
-			m_components.erase(m_components.begin() + i);
-			return true;
-		}
-	}
-	return false;
-}
-
-template<typename CT>
-CT* GameObject::GetComponentByType() const
-{
-	for (auto& component : m_components)
-	{
-		std::shared_ptr<CT> casted_component = std::dynamic_pointer_cast<CT>(component);
-		if (casted_component)
-			return casted_component.get();
-	}
-	return nullptr;
+	if (component.get() == nullptr)
+		return;
+	m_components.emplace_back(std::move(std::move(component)));
 }
 
 void GameObject::SetPosition(float x, float y)
