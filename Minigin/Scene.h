@@ -12,8 +12,8 @@ namespace dae
 		void Remove(std::shared_ptr<GameObject> object);
 		void RemoveAll();
 
-		void Update(const float delta_time);
-		void FixedUpdate(const float fixed_time_step);
+		void Update();
+		void FixedUpdate();
 		void Render() const;
 
 		~Scene();

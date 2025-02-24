@@ -5,17 +5,15 @@
 
 using namespace dae;
 
-GameObject::~GameObject() = default;
-
-void GameObject::Update(const float delta_time)
+void GameObject::Update()
 {
 	for (auto& component : m_components)
 	{
-		component->Update(delta_time);
+		component->Update();
 	}
 }
 
-void GameObject::FixedUpdate(const float)
+void GameObject::FixedUpdate()
 {
 	//placeholder
 }
@@ -32,15 +30,5 @@ void GameObject::AddComponent(std::unique_ptr<Component> component)
 {
 	if (component.get() == nullptr)
 		return;
-	m_components.emplace_back(std::move(std::move(component)));
-}
-
-void GameObject::SetPosition(float x, float y)
-{
-	m_transform.SetPosition(x, y, 0.0f);
-}
-
-const Transform& GameObject::GetTransform() const
-{
-	return m_transform;
+	m_components.emplace_back(std::move(component));
 }

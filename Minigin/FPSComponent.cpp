@@ -1,5 +1,6 @@
 #include "FPSComponent.h"
 #include <format>
+#include "Time.h"
 
 
 using namespace dae;
@@ -9,11 +10,11 @@ FPSComponent::FPSComponent(const std::string& text, std::shared_ptr<Font> font, 
 {
 }
 
-void FPSComponent::Update(const float delta_time)
+void FPSComponent::Update()
 {
-	m_textComponent->Update(delta_time);
+	m_textComponent->Update();
 
-	double fps = 1.0 / delta_time;
+	double fps = 1.0 / Time::GetInstance().GetDeltaTime();
 	m_textComponent->SetText(std::format("FPS: {:.1f}", fps));
 }
 

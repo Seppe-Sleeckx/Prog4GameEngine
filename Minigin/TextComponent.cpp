@@ -17,7 +17,7 @@ TextComponent::~TextComponent()
 	m_font.reset();
 }
 
-void TextComponent::Update(const float)
+void TextComponent::Update()
 {
 	if (m_needsUpdate)
 	{
@@ -40,11 +40,8 @@ void TextComponent::Update(const float)
 
 void TextComponent::Render() const
 {
-	if (auto game_object = m_gameObject.lock())
-	{
-		const auto& pos = game_object->GetTransform().GetPosition();
+		const auto& pos = GetOwner()->GetWorldTransform().GetPosition();
 		Renderer::GetInstance().RenderTexture(*m_textTexture, pos.x, pos.y);
-	}
 }
 
 // This implementation uses the "dirty flag" pattern

@@ -10,6 +10,7 @@
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
+#include "Time.h"
 
 SDL_Window* g_window{};
 
@@ -83,35 +84,36 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
 	auto& input = InputManager::GetInstance();
+	auto& time = Time::GetInstance();
 
 
 	// new game loop
 	//double t = 0.0;	//Keeps track of how long our game has been going on
-	const float FIXED_MS_PER_UPDATE = 16.67f;	//currently set to 60 updates per second
-	auto previous_time = std::chrono::high_resolution_clock::now();
+	time.SetFixedDeltaTime(16.67);	//currently set to 60 updates per second
+	time.SetLastTime(std::chrono::high_resolution_clock::now());
 	double lag = 0.0;
 
 	bool do_continue = true;
 	while (do_continue)
 	{
 		auto current_time = std::chrono::high_resolution_clock::now();
-		double delta_time = std::chrono::duration<double>(current_time - previous_time).count();
-		previous_time = current_time;
-		lag += delta_time;
+		time.SetDeltaTime(std::chrono::duration<double>(current_time - time.GetLastTime()).count());
+		time.SetLastTime(current_time);
+		lag += time.GetDeltaTime();
 
 		do_continue = input.ProcessInput();
 
-		while (lag >= FIXED_MS_PER_UPDATE)
+		while (lag >= time.GetFixedDeltaTime())
 		{
-			sceneManager.FixedUpdate(FIXED_MS_PER_UPDATE);
-			lag -= FIXED_MS_PER_UPDATE;
+			sceneManager.FixedUpdate();
+			lag -= time.GetFixedDeltaTime();
 			//t+= FIXED_MS_PER_UPDATE;
 		}
-		sceneManager.Update(static_cast<float>(delta_time));
+		sceneManager.Update();
 		renderer.Render();
 
-		const auto sleepTime = std::chrono::milliseconds(static_cast<int>(FIXED_MS_PER_UPDATE)) -
-			std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - previous_time);
+		const auto sleepTime = std::chrono::milliseconds(static_cast<int>(time.GetFixedDeltaTime())) -
+			std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - time.GetLastTime());
 
 		std::this_thread::sleep_for(sleepTime);
 	}

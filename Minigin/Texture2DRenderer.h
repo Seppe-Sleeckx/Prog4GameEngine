@@ -17,7 +17,7 @@ namespace dae
 		Texture2DRenderer& operator=(const Texture2DRenderer& other) = delete;
 		Texture2DRenderer& operator=(Texture2DRenderer&& other) = delete;
 
-		virtual void Update(const float) override {};
+		virtual void Update() override {};
 		virtual void Render() const override;
 		void SetTexture(const std::string& filename);
 

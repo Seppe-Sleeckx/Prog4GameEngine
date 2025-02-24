@@ -1,19 +1,19 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-void dae::SceneManager::Update(const float delta_time)
+void dae::SceneManager::Update()
 {
 	for (auto& scene : m_scenes)
 	{
-		scene->Update(delta_time);
+		scene->Update();
 	}
 }
 
-void dae::SceneManager::FixedUpdate(const float fixed_time_step)
+void dae::SceneManager::FixedUpdate()
 {
 	for (auto& scene : m_scenes)
 	{
-		scene->FixedUpdate(fixed_time_step);
+		scene->FixedUpdate();
 	}
 }
 
