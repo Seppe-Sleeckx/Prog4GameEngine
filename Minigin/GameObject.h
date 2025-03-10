@@ -2,17 +2,16 @@
 #include <memory>
 #include <vector>
 
-#include "GraphNode.h"
 #include "Component.h"
 #include "Transform.h"
 
 namespace dae
 {
-	class GameObject final : public GraphNode
+	class GameObject final
 	{
 	public:
 		//Constructor
-		GameObject() = default;
+		GameObject();
 		//Destructor
 		~GameObject() = default;
 
@@ -54,7 +53,29 @@ namespace dae
 			return nullptr;
 		}
 
+		void SetLocalTransform(const dae::Transform& local);
+		void SetLocalPosition(float x, float y, float z = 0.f);
+		void SetLocalPosition(const glm::vec3& new_pos);
+		void SetParent(GameObject* parent, bool keep_world_transform);
+
+		GameObject* GetParent() const;
+		const std::vector<GameObject*>& GetChildren() const;
+		GameObject* GetChildAtIndex(const int index);
+
+		Transform GetWorldTransform();
+		Transform GetLocalTransform() const;
+
 	private:
+		bool IsChild(GameObject* child) const;
+		void AddChild(GameObject* child);
+		void RemoveChild(GameObject* child);
+		void UpdateWorldPosition();
+
 		std::vector<std::shared_ptr<Component>> m_components;
+		bool m_dirtyTransform{ true };
+		std::unique_ptr<dae::Transform> m_pLocalTransform;
+		std::unique_ptr<dae::Transform> m_pWorldTransform; //Stores the cached world transform, only get recalculated if parents change
+		std::vector<GameObject*> m_children{};
+		std::shared_ptr<GameObject> m_pParent{ nullptr };
 	};
 }

@@ -1,21 +1,23 @@
 #include <SDL.h>
 #include "InputManager.h"
+#include "KeyboardInputManager.h"
+#include "ControllerInputManager.h"
 
-bool dae::InputManager::ProcessInput()
+using namespace dae;
+
+bool InputManager::ProcessInput()
 {
-	SDL_Event e;
-	while (SDL_PollEvent(&e)) {
-		if (e.type == SDL_QUIT) {
-			return false;
-		}
-		if (e.type == SDL_KEYDOWN) {
-			
-		}
-		if (e.type == SDL_MOUSEBUTTONDOWN) {
-			
-		}
-		// etc...
-	}
+	bool key_retval = KeyboardInputManager::GetInstance().ProcessInput();
+	bool controller_retval = ControllerInputManager::GetInstance().ProcessInput();
+	return key_retval || controller_retval;
+}
 
-	return true;
+void InputManager::BindCommand(SDL_Keycode binding, std::shared_ptr<Command> pCommand)
+{
+	KeyboardInputManager::GetInstance().BindCommand(binding, pCommand);
+}
+
+void InputManager::BindCommand(WORD binding, std::shared_ptr<Command> pCommand)
+{
+	ControllerInputManager::GetInstance().BindCommand(binding, pCommand);
 }

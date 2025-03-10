@@ -3,6 +3,8 @@
 #include <string>
 #include <memory>
 #include "Singleton.h"
+#include "backends/imgui_impl_opengl3.h"
+#include "backends/imgui_impl_sdl2.h"
 
 namespace dae
 {
@@ -14,7 +16,8 @@ namespace dae
 
 		void Update();
 		void FixedUpdate();
-		void Render();
+		void Render() const;
+		void RenderUI();
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;

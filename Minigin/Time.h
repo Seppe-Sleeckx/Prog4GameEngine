@@ -13,6 +13,7 @@ public:
 	double GetFixedDeltaTime() const;
 	std::chrono::high_resolution_clock::time_point GetLastTime() const;
 private:
+	friend class Singleton<Time>;
 	//Constructor
 	Time() = default;
 

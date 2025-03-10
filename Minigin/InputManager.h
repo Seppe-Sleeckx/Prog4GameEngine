@@ -1,5 +1,10 @@
 #pragma once
 #include "Singleton.h"
+#include "Command.h"
+#include <Windows.h>
+#include "Xinput.h"
+#include <memory>
+#include <SDL.h>
 
 namespace dae
 {
@@ -7,6 +12,8 @@ namespace dae
 	{
 	public:
 		bool ProcessInput();
+		void BindCommand(SDL_Keycode binding, std::shared_ptr<Command> pCommand);
+		void BindCommand(WORD binding, std::shared_ptr<Command> pCommand);
 	};
 
 }

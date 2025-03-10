@@ -9,12 +9,16 @@ Transform Transform::Origin()
 
 Transform Transform::Combine(const Transform& parentWorldTransform) const
 {
+	//
+	//BAD FUNCTION NAME DOESNT COMBINE THIS TRANSFORM WITH ITS PARENTTRANSFORM BUT JUST CREATES A TEMP, CHECK ALL REFERENCES TO THIS FUNCTION BEFORE CHANGING
+	//
+
 	Transform returnTransform{};
 
 	//Shit klopt vr geen meter, rotations optellen is gwn illegaal, switch misch nr matrices ofz
 	returnTransform.m_position = m_position + parentWorldTransform.GetPosition();
-	returnTransform.m_rotation = m_rotation + parentWorldTransform.GetRotation();
-	returnTransform.m_scale = m_scale * parentWorldTransform.GetScale();
+	//returnTransform.m_rotation = m_rotation + parentWorldTransform.GetRotation();
+	//returnTransform.m_scale = m_scale * parentWorldTransform.GetScale();
 
 	return returnTransform;
 }

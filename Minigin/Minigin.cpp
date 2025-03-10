@@ -89,7 +89,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 
 	// new game loop
 	//double t = 0.0;	//Keeps track of how long our game has been going on
-	time.SetFixedDeltaTime(16.67);	//currently set to 60 updates per second
+	time.SetFixedDeltaTime(16.67f);	//currently set to 60 updates per second
 	time.SetLastTime(std::chrono::high_resolution_clock::now());
 	double lag = 0.0;
 
@@ -97,7 +97,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	while (do_continue)
 	{
 		auto current_time = std::chrono::high_resolution_clock::now();
-		time.SetDeltaTime(std::chrono::duration<double>(current_time - time.GetLastTime()).count());
+		time.SetDeltaTime(std::chrono::duration<float>(current_time - time.GetLastTime()).count());
 		time.SetLastTime(current_time);
 		lag += time.GetDeltaTime();
 
