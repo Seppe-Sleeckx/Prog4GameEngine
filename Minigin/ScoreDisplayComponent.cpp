@@ -22,7 +22,7 @@ void ScoreDisplayComponent::Render() const
 
 void ScoreDisplayComponent::Notify(const GameObject& game_object, const Event& event)
 {
-	if (event.id == make_sdbm_hash("PlayerScoreIncrease"))
+	if (event.id == make_sdbm_hash("PlayerScoreIncreased"))
 	{
 		m_textComponent->SetText("Score: " + std::to_string(game_object.GetComponentByType<ScoreComponent>()->GetScore()));
 	}

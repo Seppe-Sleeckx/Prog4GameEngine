@@ -1,6 +1,7 @@
 #include "PlayerCommands.h"
 #include "MovementComponent.h"
 #include "HealthComponent.h"
+#include "ScoreComponent.h"
 using namespace dae;
 
 void MovePlayerCommand::Execute()
@@ -11,4 +12,9 @@ void MovePlayerCommand::Execute()
 void TakeDamageCommand::Execute()
 {
 	m_player->GetComponentByType<HealthComponent>()->TakeDamage(DAMAGE_AMOUNT);
+}
+
+void IncreaseScoreCommand::Execute()
+{
+	m_player->GetComponentByType<ScoreComponent>()->IncreaseScore(m_scoreAmount);
 }

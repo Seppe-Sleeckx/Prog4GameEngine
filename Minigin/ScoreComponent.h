@@ -16,7 +16,7 @@ namespace dae
 		ScoreComponent& operator=(ScoreComponent&& other) = delete;
 
 
-		void AddScore(float score_amount);
+		void IncreaseScore(float score_amount);
 		float GetScore() { return m_Score; };
 
 	private:
