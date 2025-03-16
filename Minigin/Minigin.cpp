@@ -1,3 +1,8 @@
+//TEMP REMOVE LATER
+#include <steam_api.h>
+
+
+
 #include <stdexcept>
 #define WIN32_LEAN_AND_MEAN 
 #include <windows.h>
@@ -111,6 +116,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		}
 		sceneManager.Update();
 		renderer.Render();
+		SteamAPI_RunCallbacks();
 
 		const auto sleepTime = std::chrono::milliseconds(static_cast<int>(time.GetFixedDeltaTime())) -
 			std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - time.GetLastTime());
