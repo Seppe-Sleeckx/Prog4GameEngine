@@ -17,7 +17,7 @@ bool KeyboardInputManager::ProcessInput()
 	for (auto& key_action : m_KeyboardCommandBindings) {
 		SDL_Keycode key_code = key_action.first;
 		if (key_state[SDL_GetScancodeFromKey(key_code)]) {
-			key_action.second->Execute();
+			key_action.second->Execute();	
 		}
 	}
 

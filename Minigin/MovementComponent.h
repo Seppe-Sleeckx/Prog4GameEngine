@@ -16,11 +16,7 @@ namespace dae
 		MovementComponent(MovementComponent&& other) = delete;
 		MovementComponent& operator=(const MovementComponent& other) = delete;
 		MovementComponent& operator=(MovementComponent&& other) = delete;
-
-		//Inherited functions
-		virtual void Update() override {};
-		virtual void FixedUpdate() override {};
-		virtual void Render() const override {};
+		
 
 		void Move(glm::vec3 move_vector);
 		void Move(float x, float y, float z = 0.f);

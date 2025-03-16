@@ -9,7 +9,7 @@ bool InputManager::ProcessInput()
 {
 	bool key_retval = KeyboardInputManager::GetInstance().ProcessInput();
 	bool controller_retval = ControllerInputManager::GetInstance().ProcessInput();
-	return key_retval || controller_retval;
+	return key_retval && controller_retval;
 }
 
 void InputManager::BindCommand(SDL_Keycode binding, std::shared_ptr<Command> pCommand)
