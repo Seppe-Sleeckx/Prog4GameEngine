@@ -19,10 +19,7 @@ namespace dae
 
 		void AddObserver(Observer* pObserver);
 		bool RemoveObserver(Observer* pObserver);
-
-	protected:
 		void Notify(const GameObject& game_object, const Event& event);
-
 	private:
 		std::vector<Observer*> m_Observers;
 	};
