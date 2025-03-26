@@ -10,21 +10,24 @@ bool KeyboardInputManager::ProcessInput()
 		if (e.type == SDL_QUIT) {
 			return false;
 		}
-		ImGui_ImplSDL2_ProcessEvent(&e);
-	}
-
-	const Uint8* key_state = SDL_GetKeyboardState(NULL);
-	for (auto& key_action : m_KeyboardCommandBindings) {
-		SDL_Keycode key_code = key_action.first;
-		if (key_state[SDL_GetScancodeFromKey(key_code)]) {
-			key_action.second->Execute();	
+		auto& command = m_KeyboardCommandBindings[e.key.keysym.sym].second;
+		if (e.type == static_cast<Uint32>(m_KeyboardCommandBindings[e.key.keysym.sym].first))
+		{
+			command->Execute();
 		}
+		ImGui_ImplSDL2_ProcessEvent(&e);
 	}
 
 	return true;
 }
 
-void KeyboardInputManager::BindCommand(SDL_Keycode binding, std::shared_ptr<Command> pCommand)
+void KeyboardInputManager::BindCommand(SDL_Keycode binding, std::shared_ptr<Command> pCommand, bool on_keydown)
 {
-	m_KeyboardCommandBindings.insert({ binding, pCommand });
+	SDL_EventType type = (on_keydown ? SDL_EventType::SDL_KEYDOWN : SDL_EventType::SDL_KEYUP);
+	m_KeyboardCommandBindings.insert({ binding, std::make_pair(type, pCommand)});
+}
+
+void KeyboardInputManager::UnBindCommand(SDL_KeyCode binding)
+{
+	m_KeyboardCommandBindings.erase(binding);
 }

@@ -21,3 +21,13 @@ void InputManager::BindCommand(WORD binding, std::shared_ptr<Command> pCommand)
 {
 	ControllerInputManager::GetInstance().BindCommand(binding, pCommand);
 }
+
+void InputManager::UnBindCommand(SDL_KeyCode binding)
+{
+	KeyboardInputManager::GetInstance().UnBindCommand(binding);
+}
+
+void InputManager::UnBindCommand(WORD binding)
+{
+	ControllerInputManager::GetInstance().UnBindCommand(binding);
+}

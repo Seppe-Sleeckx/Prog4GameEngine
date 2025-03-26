@@ -33,3 +33,8 @@ void ControllerInputManager::BindCommand(WORD binding,std::shared_ptr<Command> p
 {
 	m_ControllerButtonCommandBindings.insert({ binding, pCommand });
 }
+
+void ControllerInputManager::UnBindCommand(WORD binding)
+{
+    m_ControllerButtonCommandBindings.erase(binding);
+}

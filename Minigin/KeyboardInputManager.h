@@ -10,9 +10,10 @@ namespace dae
 	{
 	public:
 		bool ProcessInput();
-		void BindCommand(SDL_Keycode binding, std::shared_ptr<Command> pCommand);
+		void BindCommand(SDL_Keycode binding, std::shared_ptr<Command> pCommand, bool on_keydown = true);
+		void UnBindCommand(SDL_KeyCode binding);
 	private:
-		std::unordered_map<SDL_Keycode, std::shared_ptr<Command>> m_KeyboardCommandBindings;
+		std::unordered_map<SDL_Keycode, std::pair<SDL_EventType,std::shared_ptr<Command>>> m_KeyboardCommandBindings;
 	};
 }
 

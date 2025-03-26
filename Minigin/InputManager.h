@@ -14,6 +14,8 @@ namespace dae
 		bool ProcessInput();
 		void BindCommand(SDL_Keycode binding, std::shared_ptr<Command> pCommand);
 		void BindCommand(WORD binding, std::shared_ptr<Command> pCommand);
+		void UnBindCommand(SDL_KeyCode binding);
+		void UnBindCommand(WORD binding);
 	};
 
 }

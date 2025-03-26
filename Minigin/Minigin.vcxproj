@@ -217,7 +217,6 @@ xcopy "$(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll" "$(Out
     <ClInclude Include="Font.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GraphNode.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="HealthDisplayComponent.h" />
     <ClInclude Include="InputManager.h" />
@@ -249,12 +248,10 @@ xcopy "$(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll" "$(Out
     <ClCompile Include="..\3rdParty\imgui-master\imgui_draw.cpp" />
     <ClCompile Include="..\3rdParty\imgui-master\imgui_tables.cpp" />
     <ClCompile Include="..\3rdParty\imgui-master\imgui_widgets.cpp" />
-    <ClCompile Include="Component.cpp" />
     <ClCompile Include="ControllerInputManager.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GraphNode.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="HealthDisplayComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
