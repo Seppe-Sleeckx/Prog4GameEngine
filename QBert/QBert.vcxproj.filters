@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{0f1997b1-8b2c-4652-9fd9-f49fb5a8f1f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{2b9ed97c-e5bb-4e36-bf11-f530734bd856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Commands">
+      <UniqueIdentifier>{0fe0d691-c563-4292-9724-67d2470ceb36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Commands">
+      <UniqueIdentifier>{84bec90a-691c-4805-bfa3-1fe0a64d19e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enemies">
+      <UniqueIdentifier>{d44dc348-5ef5-404b-b4c8-c038f022374e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemies">
+      <UniqueIdentifier>{e55995d4-a488-4bfe-a54c-e0af3dc466d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enemies\Coily">
+      <UniqueIdentifier>{cb3746d7-7237-4875-9f47-81e7d9aa878a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemies\Coily">
+      <UniqueIdentifier>{05a7d9fe-f7e0-4cb1-a292-3718daceefd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Level">
+      <UniqueIdentifier>{2c316b84-c77d-4cd7-8334-34934e47eb52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enemies\Coily\FSM">
+      <UniqueIdentifier>{a56a5254-bf58-4265-8ed3-ae0defa66403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemies\Coily\FSM">
+      <UniqueIdentifier>{cd90b55b-1366-4af0-84d3-b5728530d928}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level">
+      <UniqueIdentifier>{cb5c8e66-c47a-4d38-a8d1-af64f2c37d71}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreDisplayComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthDisplayComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCommands.cpp">
+      <Filter>Source Files\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="CoilyBehaviourComponent.cpp">
+      <Filter>Source Files\Enemies\Coily</Filter>
+    </ClCompile>
+    <ClCompile Include="CoilyState.cpp">
+      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="EggStaticState.cpp">
+      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="EggJumpingState.cpp">
+      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="HatchedStaticState.cpp">
+      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="HatchedJumpingState.cpp">
+      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="PiramidComponent.cpp">
+      <Filter>Source Files\Level</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FPSComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthDisplayComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IsometricGridPositionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreDisplayComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCommands.h">
+      <Filter>Header Files\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="IsometricGrid.h">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelCube.h">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CoilyBehaviourComponent.h">
+      <Filter>Header Files\Enemies\Coily</Filter>
+    </ClInclude>
+    <ClInclude Include="CoilyState.h">
+      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="EggStaticState.h">
+      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="EggJumpingState.h">
+      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="HatchedStaticState.h">
+      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="HatchedJumpingState.h">
+      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="PiramidComponent.h">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
