@@ -27,8 +27,5 @@ namespace dae
 	private:
 		std::shared_ptr<Texture2D> m_texture;
 		std::unique_ptr<SDL_Rect> m_srcRect;
-		std::unique_ptr<SDL_Rect> m_destRect;
 	};
 }
-
-

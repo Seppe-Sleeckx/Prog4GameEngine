@@ -57,6 +57,27 @@ void GameObject::SetLocalPosition(const glm::vec3& new_pos)
 	m_dirtyTransform = true;
 }
 
+void GameObject::SetWorldPosition(float x, float y, float z)
+{
+	SetWorldPosition({ x,y,z });
+}
+
+void GameObject::SetWorldPosition(const glm::vec3& new_pos)
+{
+	glm::vec3 local_pos{ new_pos };
+	if (m_pParent)
+	{
+		local_pos = new_pos - m_pParent->GetWorldTransform().GetPosition();
+	}
+	SetLocalPosition(local_pos);
+}
+
+void GameObject::SetLocalScale(const glm::vec3& new_scale)
+{
+	m_pLocalTransform->SetScale(new_scale);
+	m_dirtyTransform = true;
+}
+
 void GameObject::SetParent(GameObject* parent, bool keepWorldTransform)
 {
 	if (parent == this || IsChild(parent) || m_pParent == parent)

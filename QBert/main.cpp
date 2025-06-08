@@ -34,35 +34,13 @@ void load()
 #else
 	ServiceLocator::RegisterSoundSystem(std::make_unique<SDL_SoundSystem>());
 #endif
+	srand(static_cast<unsigned int>(time(nullptr)));
 
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 
-	//Make Background
-	auto backgroundObject = std::make_shared<dae::GameObject>();
-	auto textureComponent = std::make_unique<dae::Texture2DRenderer>(backgroundObject);
-	textureComponent->SetTexture("background.tga");
-	backgroundObject->AddComponent(std::move(textureComponent));
-	scene.Add(backgroundObject);
-
-	//Make Logo DAE
-	auto logoObject = std::make_shared<dae::GameObject>();
-	textureComponent = std::make_unique<dae::Texture2DRenderer>(logoObject);
-	textureComponent->SetTexture("logo.tga");
-	logoObject->SetLocalPosition(216, 180);
-	logoObject->AddComponent(std::move(textureComponent));
-	scene.Add(logoObject);
-
-	//Make Text
-	auto textObject = std::make_shared<dae::GameObject>();
-	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	auto textComponent = std::make_unique<dae::TextComponent>("Programming 4 Assignment", std::move(font), textObject);
-	textObject->SetLocalPosition(80, 2);
-	textObject->AddComponent(std::move(textComponent));
-	scene.Add(textObject);
-
 	//Make FPS
 	auto fpsObject = std::make_shared<dae::GameObject>();
-	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 50);
+	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 50);
 	auto fpsComponent = std::make_unique<dae::FPSComponent>("FPS: ", std::move(font), fpsObject);
 	fpsObject->SetLocalPosition(220, 70);
 	fpsObject->AddComponent(std::move(fpsComponent));
@@ -201,8 +179,18 @@ void load()
 	auto piramid_object = std::make_shared<dae::GameObject>();
 	auto piramid_component = std::make_unique<dae::PiramidComponent>(piramid_object);
 	piramid_object->AddComponent(std::move(piramid_component));
-	piramid_object->SetLocalPosition(400.f, 100.f);
+	piramid_object->SetLocalPosition(0.f, 0.f);
 	scene.Add(piramid_object);
+	auto cubes = piramid_object->GetComponentByType<dae::PiramidComponent>()->GetCubes();
+	for (const auto& cube : cubes)
+	{
+		scene.Add(cube);
+	}
+	auto teleporters = piramid_object->GetComponentByType<dae::PiramidComponent>()->GetTeleporters();
+	for (const auto& teleporter : teleporters)
+	{
+		scene.Add(teleporter);
+	}
 };
 
 int main(int, char* []) {

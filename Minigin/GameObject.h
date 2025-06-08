@@ -56,6 +56,9 @@ namespace dae
 		void SetLocalTransform(const dae::Transform& local);
 		void SetLocalPosition(float x, float y, float z = 0.f);
 		void SetLocalPosition(const glm::vec3& new_pos);
+		void SetWorldPosition(float x, float y, float z = 0.f);
+		void SetWorldPosition(const glm::vec3& new_pos);
+		void SetLocalScale(const glm::vec3& new_scale);
 		void SetParent(GameObject* parent, bool keep_world_transform);
 
 		GameObject* GetParent() const;

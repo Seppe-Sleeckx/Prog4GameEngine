@@ -11,7 +11,8 @@ namespace dae
 		public:
 			//Constructor
 			IsometricGridPositionComponent(std::shared_ptr<GameObject> pOwner, std::shared_ptr<IsometricGrid> pGrid): Component(pOwner), 
-				GridPos({ 0,0 }, pGrid) {};
+				m_pGridPos{ std::make_unique<IsometricGridPosition>(0.f,0.f, pGrid) } 
+			{};
 
 			//Destructor
 			virtual ~IsometricGridPositionComponent() = default;
@@ -22,6 +23,11 @@ namespace dae
 			IsometricGridPositionComponent& operator=(const IsometricGridPositionComponent& other) = delete;
 			IsometricGridPositionComponent& operator=(IsometricGridPositionComponent&& other) = delete;
 
-			IsometricGridPosition GridPos;
+			void SetIsometricPosition(const glm::vec2& new_isometric_pos);
+			IsometricGrid* GetGrid() const { return m_pGridPos->pGrid.get(); }
+			const glm::vec2 GetIsometricPosition() const { return m_pGridPos->position; }
+
+		private:
+			std::unique_ptr<IsometricGridPosition> m_pGridPos;
 	};
 }

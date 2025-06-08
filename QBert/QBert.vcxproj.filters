@@ -96,6 +96,15 @@
     <ClCompile Include="PiramidComponent.cpp">
       <Filter>Source Files\Level</Filter>
     </ClCompile>
+    <ClCompile Include="QbertObjects.cpp">
+      <Filter>Source Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="IsometricGridPositionComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeColorComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPSComponent.h">
@@ -125,7 +134,7 @@
     <ClInclude Include="IsometricGrid.h">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
-    <ClInclude Include="LevelCube.h">
+    <ClInclude Include="QbertObjects.h">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
     <ClInclude Include="CoilyBehaviourComponent.h">
@@ -148,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="PiramidComponent.h">
       <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeColorComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

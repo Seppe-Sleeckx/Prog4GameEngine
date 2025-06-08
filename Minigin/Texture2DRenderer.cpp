@@ -6,7 +6,7 @@
 using namespace dae;
 
 Texture2DRenderer::Texture2DRenderer(std::shared_ptr<GameObject> gameObject) :Component(gameObject), 
-	m_srcRect{ SDL_Rect{} }
+	m_srcRect{ std::make_unique<SDL_Rect>()}
 {
 }
 
@@ -20,11 +20,20 @@ void Texture2DRenderer::Render() const
 	if (!m_texture)
 		return;
 
-	const auto& pos = GetOwner()->GetWorldTransform().GetPosition();
-	if(m_srcRect.w <= 0|| m_srcRect.h <= 0)
+	//texures get rendered around their center (not top left)
+	auto pos = GetOwner()->GetWorldTransform().GetPosition();
+	if (m_srcRect->w <= 0 || m_srcRect->h <= 0)
+	{
+		pos.x -= m_texture->GetSize().x / 2.f;
+		pos.y -= m_texture->GetSize().y / 2.f;
 		Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y);
+	}
 	else
-		Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y, m_srcRect);
+	{
+		pos.x -= m_srcRect->w/2.f;
+		pos.y -= m_srcRect->h/2.f;
+		Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y, *m_srcRect, GetOwner()->GetWorldTransform().GetScale().x, GetOwner()->GetWorldTransform().GetScale().y);
+	}
 }
 
 void Texture2DRenderer::SetTexture(const std::string& filename)
@@ -34,5 +43,5 @@ void Texture2DRenderer::SetTexture(const std::string& filename)
 
 void Texture2DRenderer::SetSrcRect(const SDL_Rect& src_rect)
 {
-	m_srcRect = src_rect;
+	*m_srcRect = src_rect;
 }

@@ -79,13 +79,13 @@ void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
 }
 
-void dae::Renderer::RenderTexture(const Texture2D& texture, float x, float y, const SDL_Rect& src_rect) const
+void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const SDL_Rect& src_rect, const float xScale, const float yScale) const
 {
 	SDL_Rect dst{};
 	dst.x = static_cast<int>(x);
 	dst.y = static_cast<int>(y);
-	dst.w = src_rect.w;
-	dst.h = src_rect.h;
+	dst.w = static_cast<int>(src_rect.w * xScale);
+	dst.h = static_cast<int>(src_rect.h * yScale);
 	RenderTexture(texture, dst, src_rect);
 }
 

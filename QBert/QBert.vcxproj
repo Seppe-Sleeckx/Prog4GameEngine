@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="CoilyBehaviourComponent.cpp" />
     <ClCompile Include="CoilyState.cpp" />
+    <ClCompile Include="CubeColorComponent.cpp" />
     <ClCompile Include="EggJumpingState.cpp" />
     <ClCompile Include="EggStaticState.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
@@ -164,16 +165,19 @@
     <ClCompile Include="HatchedStaticState.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="HealthDisplayComponent.cpp" />
+    <ClCompile Include="IsometricGridPositionComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="PiramidComponent.cpp" />
     <ClCompile Include="PlayerCommands.cpp" />
+    <ClCompile Include="QbertObjects.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ScoreDisplayComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoilyBehaviourComponent.h" />
     <ClInclude Include="CoilyState.h" />
+    <ClInclude Include="CubeColorComponent.h" />
     <ClInclude Include="EggJumpingState.h" />
     <ClInclude Include="EggStaticState.h" />
     <ClInclude Include="FPSComponent.h" />
@@ -188,7 +192,7 @@
     <ClInclude Include="ScoreDisplayComponent.h" />
     <ClInclude Include="IsometricGrid.h" />
     <ClInclude Include="IsometricGridPositionComponent.h" />
-    <ClInclude Include="LevelCube.h" />
+    <ClInclude Include="QbertObjects.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
