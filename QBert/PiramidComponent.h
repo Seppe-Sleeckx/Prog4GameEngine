@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "QbertObjects.h"
 #include <unordered_map>
+#include "Piramid.h"
 namespace dae
 {
 	class PiramidComponent final : public Component
@@ -11,18 +12,15 @@ namespace dae
 		PiramidComponent(std::shared_ptr<GameObject> pOwner, std::shared_ptr<IsometricGrid> pGrid);
 		virtual ~PiramidComponent() = default;
 
-		GameObject* const GetCubeAtIsometricPos(const glm::vec2& isometric_pos);
-		GameObject* const GetCubeAtWorldPos(const glm::vec2& world_pos);
+		dae::GameObject* const GetCubeAtIsometricPos(const glm::vec2& isometric_pos) const { return m_pPiramid->GetCubeAtIsometricPos(isometric_pos); }
+		dae::GameObject* const GetCubeAtWorldPos(const glm::vec2& world_pos) const { return m_pPiramid->GetCubeAtWorldPos(world_pos); }
+		dae::GameObject* const GetTeleporterAtIsometricPos(const glm::vec2& isometric_pos) const { return m_pPiramid->GetTeleporterAtIsometricPos(isometric_pos); }
+		dae::GameObject* const GetTeleporterAtWorldPos(const glm::vec2& world_pos) const { return m_pPiramid->GetTeleporterAtWorldPos(world_pos); }
 
-		std::vector<std::shared_ptr<GameObject>> GetCubes() { return m_Cubes; }
-		std::vector<std::shared_ptr<GameObject>> GetTeleporters() { return m_Teleporters; }
+		qbert::Piramid* GetPiramid() { return m_pPiramid.get(); }
 	private:
-		std::shared_ptr<IsometricGrid> m_pGrid;
-		std::vector<std::shared_ptr<GameObject>> m_Cubes{};
-		std::vector<std::shared_ptr<GameObject>> m_Teleporters{};
-		static constexpr int num_layers{ 7 };
-
-		void CreateGrid();
+		std::shared_ptr<qbert::Piramid> m_pPiramid;
+	
 		void GeneratePiramid();
 		void GenerateTeleporters();
 	};

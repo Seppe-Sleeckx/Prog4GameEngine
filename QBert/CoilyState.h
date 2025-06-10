@@ -2,13 +2,14 @@
 #include <memory>
 #include "GameObject.h"
 #include <SDL_rect.h>
+#include "Piramid.h"
 
 namespace qbert
 {
 	class CoilyState
 	{
 	public:
-		CoilyState(std::weak_ptr<dae::GameObject> pCoilyObject) : m_pCoilyObject{ std::move(pCoilyObject) } {};
+		CoilyState(std::weak_ptr<dae::GameObject> pCoilyObject, std::weak_ptr<Piramid> pPiramid) : m_pCoilyObject{ std::move(pCoilyObject) }, m_pPiramid{ std::move(pPiramid) } {};
 		virtual ~CoilyState() = default;
 
 		//Rule of 5
@@ -23,5 +24,6 @@ namespace qbert
 
 	protected:
 		std::weak_ptr<dae::GameObject> m_pCoilyObject;
+		std::weak_ptr<qbert::Piramid> m_pPiramid;
 	};
 }

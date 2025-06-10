@@ -2,6 +2,7 @@
 #include "CoilyState.h"
 #include <memory>
 #include <SDL_rect.h>
+#include "IsometricGridPositionComponent.h"
 namespace qbert
 {
 	class EggJumpingState final : public CoilyState
@@ -12,8 +13,8 @@ namespace qbert
 		virtual std::unique_ptr<CoilyState> Update() override { return nullptr; };
 		virtual std::unique_ptr<CoilyState> FixedUpdate() override;
 	private:
-		static inline const SDL_Rect m_spriteSrcRect = SDL_Rect{ 160, 32, 32, 32 };
-		glm::vec2 m_goalISOPos{ 0.f,0.f };
+		static inline const SDL_Rect m_spriteSrcRect = SDL_Rect{ 96, 16, 16, 16 };
+		std::unique_ptr<IsometricGridPosition> m_pGoalPosition;
 	};
 }
 

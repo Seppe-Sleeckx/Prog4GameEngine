@@ -14,7 +14,7 @@ void IsometricGridPositionComponent::SetIsometricPosition(const glm::vec2& new_i
 void IsometricGridPositionComponent::MoveTowards(const glm::vec2& isometric_goal_pos, float max_delta)
 {
 	glm::vec2 vec = isometric_goal_pos - m_pGridPos->position;
-	if (glm::length(vec) > max_delta)
+	if (glm::length(vec) < max_delta)
 		max_delta = glm::length(vec);
 	
 	glm::vec2 normalized = glm::normalize(vec);

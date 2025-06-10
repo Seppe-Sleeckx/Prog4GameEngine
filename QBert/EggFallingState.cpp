@@ -23,8 +23,12 @@ void EggFallingState::OnEnter()
 
 std::unique_ptr<CoilyState> EggFallingState::FixedUpdate()
 {
-	m_speed += static_cast<float>(- 9.81f * dae::Time::GetInstance().GetFixedDeltaTime());
+	//m_speed += static_cast<float>(9.81f * dae::Time::GetInstance().GetFixedDeltaTime()) * 0.01f;
+	m_speed += 0.001f;
+	//m_speed = 0.01f;
 	m_pCoilyObject.lock().get()->GetComponentByType<dae::IsometricGridPositionComponent>()->MoveTowards(m_pGoalPosition->position, m_speed);
+	if(m_pCoilyObject.lock().get()->GetComponentByType<dae::IsometricGridPositionComponent>()->GetIsometricPosition() == m_pGoalPosition->position)
+		return std::make_unique<EggStaticState>(m_pCoilyObject);
 
 	return nullptr;
 }

@@ -75,6 +75,19 @@ namespace dae
 			return m_pParent->GetComponentByType<CT>();
 		}
 
+		template<typename CT>
+		CT* GetComponentInParents() const //Returns first found instance of component type
+		{
+			if (m_pParent == nullptr)
+				return nullptr;
+
+			auto component = GetComponentInParent<CT>();
+			if (component != nullptr)
+				return component;
+			else
+				return m_pParent->GetComponentInParents<CT>();
+		}
+
 		void SetLocalTransform(const dae::Transform& local);
 		void SetLocalPosition(float x, float y, float z = 0.f);
 		void SetLocalPosition(const glm::vec3& new_pos);
