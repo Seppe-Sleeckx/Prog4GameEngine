@@ -10,3 +10,14 @@ void IsometricGridPositionComponent::SetIsometricPosition(const glm::vec2& new_i
 	glm::vec3 world_pos{ temp_pos.x, temp_pos.y , 0.f };
 	GetOwner()->SetWorldPosition(world_pos);
 }
+
+void IsometricGridPositionComponent::MoveTowards(const glm::vec2& isometric_goal_pos, float max_delta)
+{
+	glm::vec2 vec = isometric_goal_pos - m_pGridPos->position;
+	if (glm::length(vec) > max_delta)
+		max_delta = glm::length(vec);
+	
+	glm::vec2 normalized = glm::normalize(vec);
+	glm::vec2 new_pos = m_pGridPos->position + (normalized * max_delta);
+	SetIsometricPosition(new_pos);
+}

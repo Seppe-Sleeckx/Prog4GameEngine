@@ -2,7 +2,7 @@
 #include "CoilyState.h"
 #include <memory>
 #include <SDL_rect.h>
-namespace dae
+namespace qbert
 {
 	class HatchedStaticState final : public CoilyState
 	{
@@ -12,7 +12,6 @@ namespace dae
 		virtual void OnEnter() override;
 		virtual std::unique_ptr<CoilyState> Update() override { return nullptr; };
 		virtual std::unique_ptr<CoilyState> FixedUpdate() override;
-		virtual void Render() override;
 
 	private:
 		enum FacingDirection {

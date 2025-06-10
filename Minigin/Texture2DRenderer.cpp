@@ -24,15 +24,21 @@ void Texture2DRenderer::Render() const
 	auto pos = GetOwner()->GetWorldTransform().GetPosition();
 	if (m_srcRect->w <= 0 || m_srcRect->h <= 0)
 	{
-		pos.x -= m_texture->GetSize().x / 2.f;
-		pos.y -= m_texture->GetSize().y / 2.f;
+		auto xScale = GetOwner()->GetWorldTransform().GetScale().x;
+		auto yScale = GetOwner()->GetWorldTransform().GetScale().y;
+		pos.x -= (xScale * m_texture->GetSize().x)/ 2.f;
+		pos.y -= (yScale * m_texture->GetSize().y)     / 2.f;
+		pos.x *= GetOwner()->GetWorldTransform().GetScale().x;
+		pos.y *= GetOwner()->GetWorldTransform().GetScale().y;
 		Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y);
 	}
 	else
 	{
-		pos.x -= m_srcRect->w/2.f;
-		pos.y -= m_srcRect->h/2.f;
-		Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y, *m_srcRect, GetOwner()->GetWorldTransform().GetScale().x, GetOwner()->GetWorldTransform().GetScale().y);
+		auto xScale = GetOwner()->GetWorldTransform().GetScale().x;
+		auto yScale = GetOwner()->GetWorldTransform().GetScale().y;
+		pos.x -= (xScale * m_srcRect->w)/2.f;
+		pos.y -= (yScale * m_srcRect->h)/2.f;
+		Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y, *m_srcRect, xScale, yScale);
 	}
 }
 

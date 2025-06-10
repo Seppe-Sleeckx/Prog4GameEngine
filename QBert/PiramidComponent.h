@@ -8,7 +8,7 @@ namespace dae
 	class PiramidComponent final : public Component
 	{
 	public:
-		PiramidComponent(std::shared_ptr<GameObject> pOwner);
+		PiramidComponent(std::shared_ptr<GameObject> pOwner, std::shared_ptr<IsometricGrid> pGrid);
 		virtual ~PiramidComponent() = default;
 
 		GameObject* const GetCubeAtIsometricPos(const glm::vec2& isometric_pos);

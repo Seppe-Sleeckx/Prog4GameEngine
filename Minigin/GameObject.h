@@ -53,6 +53,28 @@ namespace dae
 			return nullptr;
 		}
 
+		template<typename CT>
+		std::vector<CT*> GetComponentsInChildren() const
+		{
+			auto components = std::vector<CT>();
+			for (auto child : m_children)
+			{
+				auto component = child->GetComponentByType<CT>();
+				if (component != nullptr)
+					components.push_back(component);
+			}
+			return components;
+		}
+
+		template<typename CT>
+		CT* GetComponentInParent() const
+		{
+			if (m_pParent == nullptr)
+				return nullptr;
+
+			return m_pParent->GetComponentByType<CT>();
+		}
+
 		void SetLocalTransform(const dae::Transform& local);
 		void SetLocalPosition(float x, float y, float z = 0.f);
 		void SetLocalPosition(const glm::vec3& new_pos);

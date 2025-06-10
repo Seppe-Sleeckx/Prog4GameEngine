@@ -3,7 +3,7 @@
 #include "GameObject.h"
 #include <SDL_rect.h>
 
-namespace dae
+namespace qbert
 {
 	class CoilyState
 	{
@@ -20,9 +20,8 @@ namespace dae
 		virtual void OnEnter() = 0;
 		virtual std::unique_ptr<CoilyState> Update() = 0;
 		virtual std::unique_ptr<CoilyState> FixedUpdate() = 0;
-		virtual void Render() = 0;
 
 	protected:
-		std::weak_ptr<GameObject> m_pCoilyObject;
+		std::weak_ptr<dae::GameObject> m_pCoilyObject;
 	};
 }

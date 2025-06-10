@@ -158,6 +158,7 @@
     <ClCompile Include="CoilyBehaviourComponent.cpp" />
     <ClCompile Include="CoilyState.cpp" />
     <ClCompile Include="CubeColorComponent.cpp" />
+    <ClCompile Include="EggFallingState.cpp" />
     <ClCompile Include="EggJumpingState.cpp" />
     <ClCompile Include="EggStaticState.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="CoilyBehaviourComponent.h" />
     <ClInclude Include="CoilyState.h" />
     <ClInclude Include="CubeColorComponent.h" />
+    <ClInclude Include="EggFallingState.h" />
     <ClInclude Include="EggJumpingState.h" />
     <ClInclude Include="EggStaticState.h" />
     <ClInclude Include="FPSComponent.h" />

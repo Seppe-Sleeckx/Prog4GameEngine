@@ -12,4 +12,7 @@ namespace qbert
 
 	//Teleporter
 	std::shared_ptr<dae::GameObject> CreateTeleporter(std::shared_ptr<IsometricGrid> pGrid);
+
+	//Coily
+	std::shared_ptr<dae::GameObject> CreateCoily(std::shared_ptr<IsometricGrid> pGrid);
 }

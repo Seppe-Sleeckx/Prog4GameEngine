@@ -1,6 +1,6 @@
 #include "HatchedStaticState.h"
 #include "Texture2DRenderer.h"
-using namespace dae;
+using namespace qbert;
 void HatchedStaticState::OnEnter()
 {
 	//check which direction to face
@@ -18,9 +18,4 @@ std::unique_ptr<CoilyState> HatchedStaticState::FixedUpdate()
 		return std::make_unique<HatchedStaticState>(m_pCoilyObject);
 	}
 	return nullptr;
-}
-
-void HatchedStaticState::Render()
-{
-	m_pCoilyObject.lock()->GetComponentByType<Texture2DRenderer>()->Render();
 }

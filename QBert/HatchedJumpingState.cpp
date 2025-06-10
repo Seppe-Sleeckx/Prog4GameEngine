@@ -1,6 +1,6 @@
 #include "HatchedJumpingState.h"
 #include "Texture2DRenderer.h"
-using namespace dae;
+using namespace qbert;
 void HatchedJumpingState::OnEnter()
 {
 	//Set facing direction
@@ -11,9 +11,4 @@ std::unique_ptr<CoilyState> HatchedJumpingState::FixedUpdate()
 {
 	//move towards chosen levelCube
 	return nullptr;
-}
-
-void HatchedJumpingState::Render()
-{
-	m_pCoilyObject.lock()->GetComponentByType<Texture2DRenderer>()->Render();
 }

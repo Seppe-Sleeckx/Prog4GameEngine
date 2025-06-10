@@ -222,7 +222,6 @@ xcopy "$(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll" "$(Out
     <ClInclude Include="..\3rdParty\imgui-master\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-master\imstb_truetype.h" />
     <ClInclude Include="..\3rdParty\imgui-plot-master\include\imgui_plot.h" />
-    <ClInclude Include="GLM_HashFunctions.h" />
     <ClInclude Include="Logging_SoundSystem.h" />
     <ClInclude Include="Null_SoundSystem.h" />
     <ClInclude Include="SoundSystem.h" />

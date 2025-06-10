@@ -6,10 +6,10 @@ struct IsometricGrid
 {
 	explicit IsometricGrid(float tile_width, float tile_height) :tile_height{ tile_height }, tile_width{ tile_width } {};
 
-	glm::vec2 LocalToIsometricGridSpace(const glm::vec2& local_coord)
+	glm::vec2 WorldToIsometricGridSpace(const glm::vec2& world_coord)
 	{
-		float x = local_coord.x - origin.x;
-		float y = local_coord.y - origin.y;
+		float x = world_coord.x - origin.x;
+		float y = world_coord.y - origin.y;
 
 		float isoX = ((y / tile_height) + (x / tile_width)) / 2;
 		float isoY = ((y / tile_height) - (x / tile_width)) / 2;

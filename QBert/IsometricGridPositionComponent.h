@@ -24,7 +24,8 @@ namespace dae
 			IsometricGridPositionComponent& operator=(IsometricGridPositionComponent&& other) = delete;
 
 			void SetIsometricPosition(const glm::vec2& new_isometric_pos);
-			IsometricGrid* GetGrid() const { return m_pGridPos->pGrid.get(); }
+			void MoveTowards(const glm::vec2& isometric_goal_pos, float max_delta);
+			std::shared_ptr<IsometricGrid> GetGrid() const { return m_pGridPos->pGrid; }
 			const glm::vec2 GetIsometricPosition() const { return m_pGridPos->position; }
 
 		private:

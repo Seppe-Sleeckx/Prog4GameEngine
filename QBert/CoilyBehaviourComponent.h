@@ -3,18 +3,18 @@
 #include "IsometricGrid.h"
 #include "CoilyState.h"
 
-namespace dae
+namespace qbert
 {
-	class CoilyBehaviourComponent final : public Component
+	class CoilyBehaviourComponent final : public dae::Component
 	{
 	public:
-		CoilyBehaviourComponent(std::shared_ptr<GameObject> pOwner);
+		CoilyBehaviourComponent(std::shared_ptr<dae::GameObject> pOwner);
 		virtual ~CoilyBehaviourComponent() = default;
 		virtual void Update() override;
 		virtual void FixedUpdate() override;
-		virtual void Render() const override;
 
 	private:
+		void ChangeState(std::unique_ptr<CoilyState> pNewState);
 		std::unique_ptr<CoilyState> m_pState;
 	};
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include "CoilyState.h"
-namespace dae
+namespace qbert
 {
 	class HatchedJumpingState final : public CoilyState
 	{
@@ -10,7 +10,6 @@ namespace dae
 		virtual void OnEnter() override;
 		virtual std::unique_ptr<CoilyState> Update() override { return nullptr; };
 		virtual std::unique_ptr<CoilyState> FixedUpdate() override;
-		virtual void Render() override;
 
 	private:
 		enum FacingDirection {

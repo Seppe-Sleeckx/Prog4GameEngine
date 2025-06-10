@@ -176,8 +176,17 @@ void load()
 	extra_controls_text_object->SetLocalPosition(20.f, 300.f);
 	scene.Add(extra_controls_text_object);
 
+
+	///QBERT
+
+	//Grid
+	static constexpr float grid_size = 64.f;
+	auto grid = std::make_shared<IsometricGrid>(grid_size, grid_size);
+	grid->origin = glm::vec2{ 320.f, 75.f };
+
+	//Piramid
 	auto piramid_object = std::make_shared<dae::GameObject>();
-	auto piramid_component = std::make_unique<dae::PiramidComponent>(piramid_object);
+	auto piramid_component = std::make_unique<dae::PiramidComponent>(piramid_object, grid);
 	piramid_object->AddComponent(std::move(piramid_component));
 	piramid_object->SetLocalPosition(0.f, 0.f);
 	scene.Add(piramid_object);
@@ -191,6 +200,11 @@ void load()
 	{
 		scene.Add(teleporter);
 	}
+
+	//Coily (test)
+	auto coily = qbert::CreateCoily(grid);
+	scene.Add(coily);
+	
 };
 
 int main(int, char* []) {

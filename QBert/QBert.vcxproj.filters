@@ -96,14 +96,17 @@
     <ClCompile Include="PiramidComponent.cpp">
       <Filter>Source Files\Level</Filter>
     </ClCompile>
-    <ClCompile Include="QbertObjects.cpp">
-      <Filter>Source Files\Level</Filter>
-    </ClCompile>
     <ClCompile Include="IsometricGridPositionComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="CubeColorComponent.cpp">
       <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="QbertObjects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EggFallingState.cpp">
+      <Filter>Source Files\Enemies\Coily\FSM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,9 +137,6 @@
     <ClInclude Include="IsometricGrid.h">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
-    <ClInclude Include="QbertObjects.h">
-      <Filter>Header Files\Level</Filter>
-    </ClInclude>
     <ClInclude Include="CoilyBehaviourComponent.h">
       <Filter>Header Files\Enemies\Coily</Filter>
     </ClInclude>
@@ -160,6 +160,12 @@
     </ClInclude>
     <ClInclude Include="CubeColorComponent.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="QbertObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EggFallingState.h">
+      <Filter>Header Files\Enemies\Coily\FSM</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

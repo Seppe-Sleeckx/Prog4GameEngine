@@ -16,11 +16,9 @@ namespace qbert {
 
 namespace dae
 {
-	
 	class CubeColorComponent final : public Component
 	{
 	public:
-
 
 	private:
 		void SetNewCubeColor(const qbert::CubeColor new_color);

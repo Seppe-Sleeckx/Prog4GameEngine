@@ -1,9 +1,9 @@
 #include "PiramidComponent.h"
 #include <random>
 using namespace dae;
-PiramidComponent::PiramidComponent(std::shared_ptr<GameObject> pOwner) : Component(pOwner)
+PiramidComponent::PiramidComponent(std::shared_ptr<GameObject> pOwner, std::shared_ptr<IsometricGrid> pGrid) : Component(pOwner),
+	m_pGrid{pGrid}
 {
-	CreateGrid();
 	GeneratePiramid();
 	GenerateTeleporters();
 }

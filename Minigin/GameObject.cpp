@@ -20,7 +20,10 @@ void GameObject::Update()
 
 void GameObject::FixedUpdate()
 {
-	//placeholder
+	for (auto& component : m_components)
+	{
+		component->FixedUpdate();
+	}
 }
 
 void GameObject::Render() const

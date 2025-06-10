@@ -141,9 +141,6 @@
     <ClInclude Include="Null_SoundSystem.h">
       <Filter>Header Files\Services</Filter>
     </ClInclude>
-    <ClInclude Include="GLM_HashFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
