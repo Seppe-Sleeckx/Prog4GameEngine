@@ -27,6 +27,7 @@ namespace qbert
 			void MoveTowards(const glm::vec2& isometric_goal_pos, float max_delta);
 			std::shared_ptr<IsometricGrid> GetGrid() const { return m_pGridPos->pGrid; }
 			const glm::vec2 GetIsometricPosition() const { return m_pGridPos->position; }
+			const IsometricGridPosition GetIsometricGridPosition() const { return *m_pGridPos; }
 
 		private:
 			std::unique_ptr<IsometricGridPosition> m_pGridPos;

@@ -13,7 +13,7 @@ namespace qbert
 		virtual std::unique_ptr<CoilyState> Update() override { return nullptr; };
 		virtual std::unique_ptr<CoilyState> FixedUpdate() override;
 	private:
-		static inline const SDL_Rect m_spriteSrcRect = SDL_Rect{ 96, 16, 16, 16 };
+		static inline const SDL_Rect m_spriteSrcRect = SDL_Rect{ 80, 16, 16, 16 };
 		std::unique_ptr<IsometricGridPosition> m_pGoalPosition;
 		const float m_speed{ 0.01f };
 	};

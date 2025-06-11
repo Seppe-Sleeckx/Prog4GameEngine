@@ -25,29 +25,47 @@
     <Filter Include="Source Files\Commands">
       <UniqueIdentifier>{84bec90a-691c-4805-bfa3-1fe0a64d19e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Enemies">
-      <UniqueIdentifier>{d44dc348-5ef5-404b-b4c8-c038f022374e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Enemies">
-      <UniqueIdentifier>{e55995d4-a488-4bfe-a54c-e0af3dc466d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Enemies\Coily">
-      <UniqueIdentifier>{cb3746d7-7237-4875-9f47-81e7d9aa878a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Enemies\Coily">
-      <UniqueIdentifier>{05a7d9fe-f7e0-4cb1-a292-3718daceefd4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Level">
       <UniqueIdentifier>{2c316b84-c77d-4cd7-8334-34934e47eb52}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Enemies\Coily\FSM">
-      <UniqueIdentifier>{a56a5254-bf58-4265-8ed3-ae0defa66403}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Enemies\Coily\FSM">
-      <UniqueIdentifier>{cd90b55b-1366-4af0-84d3-b5728530d928}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Level">
       <UniqueIdentifier>{cb5c8e66-c47a-4d38-a8d1-af64f2c37d71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Commands\Qbert">
+      <UniqueIdentifier>{e5b47d74-58a6-4f72-acfe-2c468f78c7de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Commands\Qbert">
+      <UniqueIdentifier>{4ad6969c-a7a0-4c1c-9ad5-72f16c54ce6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{e55995d4-a488-4bfe-a54c-e0af3dc466d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Coily">
+      <UniqueIdentifier>{05a7d9fe-f7e0-4cb1-a292-3718daceefd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Coily\FSM">
+      <UniqueIdentifier>{cd90b55b-1366-4af0-84d3-b5728530d928}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{d44dc348-5ef5-404b-b4c8-c038f022374e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Coily">
+      <UniqueIdentifier>{cb3746d7-7237-4875-9f47-81e7d9aa878a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Coily\FSM">
+      <UniqueIdentifier>{a56a5254-bf58-4265-8ed3-ae0defa66403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Qbert">
+      <UniqueIdentifier>{ba8a745b-11a6-4dce-b650-a751acf59978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Qbert">
+      <UniqueIdentifier>{9ca2b0de-34b0-45d5-a39b-7e04d8d4e0ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Qbert\FSM">
+      <UniqueIdentifier>{a18feb2f-9d31-4b81-b741-8b3544208689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Qbert\FSM">
+      <UniqueIdentifier>{bbd3148e-c488-4d72-b9d8-bf1e3553a921}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,22 +94,22 @@
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
     <ClCompile Include="CoilyBehaviourComponent.cpp">
-      <Filter>Source Files\Enemies\Coily</Filter>
+      <Filter>Source Files\Entities\Coily</Filter>
     </ClCompile>
     <ClCompile Include="CoilyState.cpp">
-      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+      <Filter>Source Files\Entities\Coily\FSM</Filter>
     </ClCompile>
     <ClCompile Include="EggStaticState.cpp">
-      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+      <Filter>Source Files\Entities\Coily\FSM</Filter>
     </ClCompile>
     <ClCompile Include="EggJumpingState.cpp">
-      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+      <Filter>Source Files\Entities\Coily\FSM</Filter>
     </ClCompile>
     <ClCompile Include="HatchedStaticState.cpp">
-      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+      <Filter>Source Files\Entities\Coily\FSM</Filter>
     </ClCompile>
     <ClCompile Include="HatchedJumpingState.cpp">
-      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+      <Filter>Source Files\Entities\Coily\FSM</Filter>
     </ClCompile>
     <ClCompile Include="PiramidComponent.cpp">
       <Filter>Source Files\Level</Filter>
@@ -106,10 +124,34 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EggFallingState.cpp">
-      <Filter>Source Files\Enemies\Coily\FSM</Filter>
+      <Filter>Source Files\Entities\Coily\FSM</Filter>
     </ClCompile>
     <ClCompile Include="Piramid.cpp">
       <Filter>Source Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="QbertCommands.cpp">
+      <Filter>Source Files\Commands\Qbert</Filter>
+    </ClCompile>
+    <ClCompile Include="QbertBehaviourComponent.cpp">
+      <Filter>Source Files\Entities\Qbert</Filter>
+    </ClCompile>
+    <ClCompile Include="QbertState.cpp">
+      <Filter>Source Files\Entities\Qbert\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="QbertMovingState.cpp">
+      <Filter>Source Files\Entities\Qbert\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="QbertFallingState.cpp">
+      <Filter>Source Files\Entities\Qbert\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="QbertTeleporterState.cpp">
+      <Filter>Source Files\Entities\Qbert\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="QbertStaticState.cpp">
+      <Filter>Source Files\Entities\Qbert\FSM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,22 +183,22 @@
       <Filter>Header Files\Level</Filter>
     </ClInclude>
     <ClInclude Include="CoilyBehaviourComponent.h">
-      <Filter>Header Files\Enemies\Coily</Filter>
+      <Filter>Header Files\Entities\Coily</Filter>
     </ClInclude>
     <ClInclude Include="CoilyState.h">
-      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+      <Filter>Header Files\Entities\Coily\FSM</Filter>
     </ClInclude>
     <ClInclude Include="EggStaticState.h">
-      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+      <Filter>Header Files\Entities\Coily\FSM</Filter>
     </ClInclude>
     <ClInclude Include="EggJumpingState.h">
-      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+      <Filter>Header Files\Entities\Coily\FSM</Filter>
     </ClInclude>
     <ClInclude Include="HatchedStaticState.h">
-      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+      <Filter>Header Files\Entities\Coily\FSM</Filter>
     </ClInclude>
     <ClInclude Include="HatchedJumpingState.h">
-      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+      <Filter>Header Files\Entities\Coily\FSM</Filter>
     </ClInclude>
     <ClInclude Include="PiramidComponent.h">
       <Filter>Header Files\Level</Filter>
@@ -168,10 +210,37 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EggFallingState.h">
-      <Filter>Header Files\Enemies\Coily\FSM</Filter>
+      <Filter>Header Files\Entities\Coily\FSM</Filter>
     </ClInclude>
     <ClInclude Include="Piramid.h">
       <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="QbertCommands.h">
+      <Filter>Header Files\Commands\Qbert</Filter>
+    </ClInclude>
+    <ClInclude Include="QbertBehaviourComponent.h">
+      <Filter>Header Files\Entities\Qbert</Filter>
+    </ClInclude>
+    <ClInclude Include="QbertState.h">
+      <Filter>Header Files\Entities\Qbert\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="QbertMovingState.h">
+      <Filter>Header Files\Entities\Qbert\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="QbertFallingState.h">
+      <Filter>Header Files\Entities\Qbert\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="QbertTeleporterState.h">
+      <Filter>Header Files\Entities\Qbert\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="StateHelpers.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="QbertStaticState.h">
+      <Filter>Header Files\Entities\Qbert\FSM</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -13,7 +13,7 @@ namespace qbert
 		virtual std::unique_ptr<CoilyState> FixedUpdate() override;
 	private:
 		float m_jumpTimer{ 0.f };
-		static inline const SDL_Rect m_spriteSrcRect = SDL_Rect{ 80, 16, 16, 16 };
+		static inline const SDL_Rect m_spriteSrcRect = SDL_Rect{ 64, 16, 16, 16 };
 
 		bool HasReachedBottomOfPiramid();
 	};

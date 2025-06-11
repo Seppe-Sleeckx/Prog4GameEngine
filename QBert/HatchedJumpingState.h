@@ -1,26 +1,21 @@
 #pragma once
 #include "CoilyState.h"
+#include "StateHelpers.h"
 namespace qbert
 {
 	class HatchedJumpingState final : public CoilyState
 	{
 	public:
-		HatchedJumpingState(std::weak_ptr<dae::GameObject> pCoilyObject, std::weak_ptr<Piramid> pPiramid) : CoilyState(std::move(pCoilyObject), std::move(pPiramid)) {};
+		HatchedJumpingState(std::weak_ptr<dae::GameObject> pCoilyObject, std::weak_ptr<Piramid> pPiramid);
+		virtual ~HatchedJumpingState() = default;
 
 		virtual void OnEnter() override;
 		virtual std::unique_ptr<CoilyState> Update() override { return nullptr; };
 		virtual std::unique_ptr<CoilyState> FixedUpdate() override;
 
 	private:
-		enum FacingDirection {
-			Left_Up,
-			Left_Down,
-			Right_Up,
-			Right_Down
-		};
-
-		FacingDirection m_facingDirection; //TODO
-		SDL_Rect m_spriteSrcRect; //TODO
+		FacingDirection m_facingDirection{ FacingDirection::Left_Down };
 		glm::vec2 m_goalPos{ 0.f,0.f };
+		const float m_speed{ 0.01f };
 	};
 }

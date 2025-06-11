@@ -208,6 +208,10 @@ void load()
 	//Coily (test)
 	auto coily = qbert::CreateCoily(grid, piramid);
 	scene.Add(coily);
+
+	//Qbert (test)
+	auto qbert = qbert::CreateQbert(grid, piramid);
+	scene.Add(qbert);
 	
 };
 

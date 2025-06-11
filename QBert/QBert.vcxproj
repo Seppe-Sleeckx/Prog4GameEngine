@@ -161,6 +161,7 @@
     <ClCompile Include="EggFallingState.cpp" />
     <ClCompile Include="EggJumpingState.cpp" />
     <ClCompile Include="EggStaticState.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="HatchedJumpingState.cpp" />
     <ClCompile Include="HatchedStaticState.cpp" />
@@ -172,17 +173,27 @@
     <ClCompile Include="Piramid.cpp" />
     <ClCompile Include="PiramidComponent.cpp" />
     <ClCompile Include="PlayerCommands.cpp" />
+    <ClCompile Include="QbertBehaviourComponent.cpp" />
+    <ClCompile Include="QbertCommands.cpp" />
+    <ClCompile Include="QbertFallingState.cpp" />
+    <ClCompile Include="QbertMovingState.cpp" />
     <ClCompile Include="QbertObjects.cpp" />
+    <ClCompile Include="QbertState.cpp" />
+    <ClCompile Include="QbertStaticState.cpp" />
+    <ClCompile Include="QbertTeleporterState.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ScoreDisplayComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoilyBehaviourComponent.h" />
     <ClInclude Include="CoilyState.h" />
+    <ClInclude Include="QbertStaticState.h" />
+    <ClInclude Include="StateHelpers.h" />
     <ClInclude Include="CubeColorComponent.h" />
     <ClInclude Include="EggFallingState.h" />
     <ClInclude Include="EggJumpingState.h" />
     <ClInclude Include="EggStaticState.h" />
+    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="HatchedJumpingState.h" />
     <ClInclude Include="HatchedStaticState.h" />
@@ -192,6 +203,12 @@
     <ClInclude Include="Piramid.h" />
     <ClInclude Include="PiramidComponent.h" />
     <ClInclude Include="PlayerCommands.h" />
+    <ClInclude Include="QbertBehaviourComponent.h" />
+    <ClInclude Include="QbertCommands.h" />
+    <ClInclude Include="QbertFallingState.h" />
+    <ClInclude Include="QbertMovingState.h" />
+    <ClInclude Include="QbertState.h" />
+    <ClInclude Include="QbertTeleporterState.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ScoreDisplayComponent.h" />
     <ClInclude Include="IsometricGrid.h" />

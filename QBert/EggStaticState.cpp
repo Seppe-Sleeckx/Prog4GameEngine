@@ -1,6 +1,6 @@
 #include "EggStaticState.h"
 #include "EggJumpingState.h"
-#include "HatchedStaticState.h"
+#include "HatchedJumpingState.h"
 #include "GameTime.h"
 #include "Texture2DRenderer.h"
 #include "GameObject.h"
@@ -26,7 +26,7 @@ std::unique_ptr<CoilyState> EggStaticState::FixedUpdate()
 	if (m_jumpTimer >= jump_cooldown)
 	{
 		if (HasReachedBottomOfPiramid())
-			return std::make_unique<HatchedStaticState>(m_pCoilyObject, m_pPiramid);
+			return std::make_unique<HatchedJumpingState>(m_pCoilyObject, m_pPiramid);
 		else
 			return std::make_unique<EggJumpingState>(m_pCoilyObject, m_pPiramid);
 	}

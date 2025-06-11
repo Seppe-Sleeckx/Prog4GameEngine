@@ -4,6 +4,7 @@ C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\CubeColorComponent.cpp;C:\H
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\EggFallingState.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\EggFallingState.obj
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\EggJumpingState.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\EggJumpingState.obj
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\EggStaticState.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\EggStaticState.obj
+C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\EntityManager.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\EntityManager.obj
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\FPSComponent.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\FPSComponent.obj
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\HatchedJumpingState.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\HatchedJumpingState.obj
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\HatchedStaticState.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\HatchedStaticState.obj
@@ -15,6 +16,13 @@ C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\MovementComponent.cpp;C:\HO
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\Piramid.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\Piramid.obj
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\PiramidComponent.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\PiramidComponent.obj
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\PlayerCommands.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\PlayerCommands.obj
+C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\QbertBehaviourComponent.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\QbertBehaviourComponent.obj
+C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\QbertCommands.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\QbertCommands.obj
+C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\QbertFallingState.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\QbertFallingState.obj
+C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\QbertMovingState.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\QbertMovingState.obj
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\QbertObjects.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\QbertObjects.obj
+C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\QbertState.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\QbertState.obj
+C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\QbertStaticState.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\QbertStaticState.obj
+C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\QbertTeleporterState.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\QbertTeleporterState.obj
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\ScoreComponent.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\ScoreComponent.obj
 C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\ScoreDisplayComponent.cpp;C:\HOWEST\2024-2025\SEM2\prog4\Prog4GameEngine\QBert\x64\Debug\ScoreDisplayComponent.obj

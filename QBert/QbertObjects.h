@@ -16,4 +16,7 @@ namespace qbert
 
 	//Coily
 	std::shared_ptr<dae::GameObject> CreateCoily(std::shared_ptr<IsometricGrid> pGrid, std::weak_ptr<qbert::Piramid> pPiramid);
+
+	//Qbert
+	std::shared_ptr<dae::GameObject> CreateQbert(std::shared_ptr<IsometricGrid> pGrid, std::weak_ptr<qbert::Piramid> pPiramid); //maybe also need piramid
 }
