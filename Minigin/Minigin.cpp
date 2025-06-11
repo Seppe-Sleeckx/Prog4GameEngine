@@ -12,6 +12,8 @@
 #include "ResourceManager.h"
 #include "GameTime.h"
 
+#include <iostream>
+
 SDL_Window* g_window{};
 
 void PrintSDLVersion()
@@ -107,15 +109,17 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		{
 			sceneManager.FixedUpdate();
 			lag -= time.GetFixedDeltaTime();
-			//t+= FIXED_MS_PER_UPDATE;
 		}
 		sceneManager.Update();
 		renderer.Render();
 
-		const auto sleepTime = std::chrono::milliseconds(static_cast<int>(time.GetFixedDeltaTime())) -
-			std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - time.GetLastTime());
 
-		std::this_thread::sleep_for(sleepTime);
+		const auto elapsedTime = std::chrono::high_resolution_clock::now() - time.GetLastTime();
+		const auto sleepTime = std::chrono::duration<double>(time.GetFixedDeltaTime()) - elapsedTime;
+
+
+		if (sleepTime.count() > 0.0) {
+			std::this_thread::sleep_for(std::chrono::duration_cast<std::chrono::milliseconds>(sleepTime));
+		}
 	}
-
 }
