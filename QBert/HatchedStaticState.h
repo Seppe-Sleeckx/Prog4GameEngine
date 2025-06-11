@@ -7,7 +7,7 @@ namespace qbert
 	class HatchedStaticState final : public CoilyState
 	{
 	public:
-		HatchedStaticState(std::weak_ptr<dae::GameObject> pCoilyObject) : CoilyState(std::move(pCoilyObject)) {};
+		HatchedStaticState(std::weak_ptr<dae::GameObject> pCoilyObject, std::weak_ptr<Piramid> pPiramid) : CoilyState(std::move(pCoilyObject), std::move(pPiramid)) {};
 
 		virtual void OnEnter() override;
 		virtual std::unique_ptr<CoilyState> Update() override { return nullptr; };
@@ -23,7 +23,7 @@ namespace qbert
 
 		float m_jumpTimer{ 0.f };
 		FacingDirection m_facingDirection;
-		SDL_Rect m_spriteSrcRect;
+		static inline const SDL_Rect m_spriteSrcRect{};
 	};
 
 }

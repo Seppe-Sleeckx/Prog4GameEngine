@@ -7,7 +7,7 @@ namespace qbert
 	class EggFallingState final : public CoilyState
 	{
 	public:
-		EggFallingState(std::weak_ptr<dae::GameObject> pCoilyObject) : CoilyState(std::move(pCoilyObject)) {}
+		EggFallingState(std::weak_ptr<dae::GameObject> pCoilyObject, std::weak_ptr<Piramid> pPiramid) : CoilyState(std::move(pCoilyObject), std::move(pPiramid)) {}
 
 		virtual void OnEnter() override;
 		virtual std::unique_ptr<CoilyState> Update() override { return nullptr; };

@@ -1,7 +1,8 @@
 #include "PiramidComponent.h"
+#include "IsometricGridPositionComponent.h"
 #include <random>
-using namespace dae;
-PiramidComponent::PiramidComponent(std::shared_ptr<GameObject> pOwner, std::shared_ptr<IsometricGrid> pGrid) : Component(pOwner),
+using namespace qbert;
+PiramidComponent::PiramidComponent(std::shared_ptr<dae::GameObject> pOwner, std::shared_ptr<IsometricGrid> pGrid) : dae::Component(pOwner),
 	m_pPiramid{std::make_shared<qbert::Piramid>(pGrid)}
 {
 	GeneratePiramid();
@@ -22,7 +23,7 @@ void PiramidComponent::GeneratePiramid()
 			auto cube = qbert::CreateLevelCube(grid);
 			cube->SetParent(GetOwner(), false);
 
-			cube->GetComponentByType<IsometricGridPositionComponent>()->SetIsometricPosition({ iso_x_pos, iso_y_pos });
+			cube->GetComponentByType<qbert::IsometricGridPositionComponent>()->SetIsometricPosition({iso_x_pos, iso_y_pos});
 			m_pPiramid->AddCubeToPiramid(std::move(cube));
 		}
 	}

@@ -1,6 +1,6 @@
 #include "IsometricGridPositionComponent.h"
 #include "GameObject.h"
-using namespace dae;
+using namespace qbert;
 
 void IsometricGridPositionComponent::SetIsometricPosition(const glm::vec2& new_isometric_pos)
 {

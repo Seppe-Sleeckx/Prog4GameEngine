@@ -108,6 +108,9 @@
     <ClCompile Include="EggFallingState.cpp">
       <Filter>Source Files\Enemies\Coily\FSM</Filter>
     </ClCompile>
+    <ClCompile Include="Piramid.cpp">
+      <Filter>Source Files\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPSComponent.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="EggFallingState.h">
       <Filter>Header Files\Enemies\Coily\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="Piramid.h">
+      <Filter>Header Files\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

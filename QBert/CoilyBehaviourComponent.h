@@ -8,7 +8,7 @@ namespace qbert
 	class CoilyBehaviourComponent final : public dae::Component
 	{
 	public:
-		CoilyBehaviourComponent(std::shared_ptr<dae::GameObject> pOwner);
+		CoilyBehaviourComponent(std::shared_ptr<dae::GameObject> pOwner, std::weak_ptr<Piramid> pPiramid);
 		virtual ~CoilyBehaviourComponent() = default;
 		virtual void Update() override;
 		virtual void FixedUpdate() override;

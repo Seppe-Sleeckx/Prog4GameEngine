@@ -15,7 +15,7 @@ std::unique_ptr<CoilyState> HatchedStaticState::FixedUpdate()
 	static constexpr float jump_cooldown = 1.f;
 	if (m_jumpTimer >= jump_cooldown)
 	{
-		return std::make_unique<HatchedStaticState>(m_pCoilyObject);
+		return std::make_unique<HatchedStaticState>(m_pCoilyObject, m_pPiramid);
 	}
 	return nullptr;
 }

@@ -24,6 +24,7 @@
 #include "SDL_SoundSystem.h"
 #include "Logging_SoundSystem.h"
 #include "Subject.h"
+#include "Piramid.h"
 #include "PiramidComponent.h"
 
 using namespace dae;
@@ -186,23 +187,26 @@ void load()
 
 	//Piramid
 	auto piramid_object = std::make_shared<dae::GameObject>();
-	auto piramid_component = std::make_unique<dae::PiramidComponent>(piramid_object, grid);
+	auto piramid_component = std::make_unique<qbert::PiramidComponent>(piramid_object, grid);
 	piramid_object->AddComponent(std::move(piramid_component));
 	piramid_object->SetLocalPosition(0.f, 0.f);
 	scene.Add(piramid_object);
-	auto cubes = piramid_object->GetComponentByType<dae::PiramidComponent>()->GetCubes();
+
+
+	auto piramid = piramid_object->GetComponentByType<qbert::PiramidComponent>()->GetPiramid();
+	auto cubes = piramid->GetCubes();
 	for (const auto& cube : cubes)
 	{
 		scene.Add(cube);
 	}
-	auto teleporters = piramid_object->GetComponentByType<dae::PiramidComponent>()->GetTeleporters();
+	auto teleporters = piramid->GetTeleporters();
 	for (const auto& teleporter : teleporters)
 	{
 		scene.Add(teleporter);
 	}
 
 	//Coily (test)
-	auto coily = qbert::CreateCoily(grid);
+	auto coily = qbert::CreateCoily(grid, piramid);
 	scene.Add(coily);
 	
 };

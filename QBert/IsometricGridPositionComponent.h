@@ -2,15 +2,15 @@
 #include "Component.h"
 #include "IsometricGrid.h"
 
-namespace dae
+namespace qbert
 {
-	class GameObject;
+	class dae::GameObject;
 
-	class IsometricGridPositionComponent final : public Component
+	class IsometricGridPositionComponent final : public dae::Component
 	{
 		public:
 			//Constructor
-			IsometricGridPositionComponent(std::shared_ptr<GameObject> pOwner, std::shared_ptr<IsometricGrid> pGrid): Component(pOwner), 
+			IsometricGridPositionComponent(std::shared_ptr<dae::GameObject> pOwner, std::shared_ptr<IsometricGrid> pGrid): dae::Component(pOwner), 
 				m_pGridPos{ std::make_unique<IsometricGridPosition>(0.f,0.f, pGrid) } 
 			{};
 

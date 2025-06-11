@@ -5,7 +5,7 @@ using namespace qbert;
 
 bool Piramid::AddCubeToPiramid(std::shared_ptr<dae::GameObject> pCube)
 {
-	if (GetCubeAtIsometricPos(pCube->GetComponentByType<dae::IsometricGridPositionComponent>()->GetIsometricPosition()) != nullptr)
+	if (GetCubeAtIsometricPos(pCube->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition()) == nullptr)
 	{
 		m_Cubes.push_back(std::move(pCube));
 		return true;
@@ -15,7 +15,7 @@ bool Piramid::AddCubeToPiramid(std::shared_ptr<dae::GameObject> pCube)
 
 bool Piramid::AddTeleporterToPiramid(std::shared_ptr<dae::GameObject> pTeleporter)
 {
-	if (GetCubeAtIsometricPos(pTeleporter->GetComponentByType<dae::IsometricGridPositionComponent>()->GetIsometricPosition()) != nullptr)
+	if (GetCubeAtIsometricPos(pTeleporter->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition()) == nullptr)
 	{
 		m_Cubes.push_back(std::move(pTeleporter));
 		return true;

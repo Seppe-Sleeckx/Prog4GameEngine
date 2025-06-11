@@ -169,6 +169,7 @@
     <ClCompile Include="IsometricGridPositionComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
+    <ClCompile Include="Piramid.cpp" />
     <ClCompile Include="PiramidComponent.cpp" />
     <ClCompile Include="PlayerCommands.cpp" />
     <ClCompile Include="QbertObjects.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="HealthDisplayComponent.h" />
     <ClInclude Include="MovementComponent.h" />
+    <ClInclude Include="Piramid.h" />
     <ClInclude Include="PiramidComponent.h" />
     <ClInclude Include="PlayerCommands.h" />
     <ClInclude Include="ScoreComponent.h" />

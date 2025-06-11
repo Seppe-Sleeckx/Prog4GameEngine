@@ -1,5 +1,6 @@
 #include "QbertObjects.h"
 #include "CoilyBehaviourComponent.h"
+#include "IsometricGridPositionComponent.h"
 
 
 // -----
@@ -19,7 +20,7 @@ std::shared_ptr<dae::GameObject> qbert::CreateLevelCube(std::shared_ptr<Isometri
 	textureComponent->SetSrcRect(src_rect);
 	level_cube->AddComponent(std::move(textureComponent));
 
-	auto isometricGridPositionComponent = std::make_unique<dae::IsometricGridPositionComponent>(level_cube, pGrid);
+	auto isometricGridPositionComponent = std::make_unique<qbert::IsometricGridPositionComponent>(level_cube, pGrid);
 	isometricGridPositionComponent->SetIsometricPosition(pGrid->WorldToIsometricGridSpace(level_cube->GetWorldTransform().GetPosition()));
 	level_cube->AddComponent(std::move(isometricGridPositionComponent));
 
@@ -40,7 +41,7 @@ std::shared_ptr<dae::GameObject> qbert::CreateTeleporter(std::shared_ptr<Isometr
 
 	auto teleporter = std::make_shared<dae::GameObject>();
 
-	auto isometric_grid_position_component = std::make_unique<dae::IsometricGridPositionComponent>(teleporter, pGrid);
+	auto isometric_grid_position_component = std::make_unique<qbert::IsometricGridPositionComponent>(teleporter, pGrid);
 	isometric_grid_position_component->SetIsometricPosition(pGrid->WorldToIsometricGridSpace(teleporter->GetWorldTransform().GetPosition()));
 	teleporter->AddComponent(std::move(isometric_grid_position_component));
 
@@ -59,18 +60,18 @@ std::shared_ptr<dae::GameObject> qbert::CreateTeleporter(std::shared_ptr<Isometr
 // Coily
 // -----
 #pragma region Coily
-std::shared_ptr<dae::GameObject> qbert::CreateCoily(std::shared_ptr<IsometricGrid> pGrid)
+std::shared_ptr<dae::GameObject> qbert::CreateCoily(std::shared_ptr<IsometricGrid> pGrid, std::weak_ptr<qbert::Piramid> pPiramid)
 {
 	auto coily = std::make_shared<dae::GameObject>();
 
-	auto isometric_grid_position_component = std::make_unique<dae::IsometricGridPositionComponent>(coily, pGrid);
+	auto isometric_grid_position_component = std::make_unique<qbert::IsometricGridPositionComponent>(coily, pGrid);
 	isometric_grid_position_component->SetIsometricPosition(pGrid->WorldToIsometricGridSpace(coily->GetWorldTransform().GetPosition()));
 	coily->AddComponent(std::move(isometric_grid_position_component));
 
 	auto texture_component = std::make_unique<dae::Texture2DRenderer>(coily);
 	coily->AddComponent(std::move(texture_component));
 
-	auto coily_behaviour_component = std::make_unique<CoilyBehaviourComponent>(coily);
+	auto coily_behaviour_component = std::make_unique<qbert::CoilyBehaviourComponent>(coily, std::move(pPiramid));
 	coily->AddComponent(std::move(coily_behaviour_component));
 
 	coily->SetLocalScale({ pGrid->tile_width / (16.f * 2.f), pGrid->tile_height / (16.f * 2.f), 1.f });

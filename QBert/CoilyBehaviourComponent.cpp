@@ -4,9 +4,9 @@
 #include "GameObject.h"
 using namespace qbert;
 
-CoilyBehaviourComponent::CoilyBehaviourComponent(std::shared_ptr<dae::GameObject> pOwner) : dae::Component(pOwner)
+CoilyBehaviourComponent::CoilyBehaviourComponent(std::shared_ptr<dae::GameObject> pOwner, std::weak_ptr<Piramid> pPiramid) : dae::Component(pOwner)
 {
-	ChangeState(std::move(std::make_unique<qbert::EggFallingState>(pOwner)));
+	ChangeState(std::move(std::make_unique<qbert::EggFallingState>(pOwner, std::move(pPiramid))));
 }
 
 void CoilyBehaviourComponent::Update()

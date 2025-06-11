@@ -2,8 +2,9 @@
 #include <memory>
 #include "GameObject.h"
 #include "Texture2DRenderer.h"
-#include "IsometricGrid.h"
-#include "IsometricGridPositionComponent.h"
+#include "Piramid.h"
+
+struct IsometricGrid;
 
 namespace qbert
 {
@@ -14,5 +15,5 @@ namespace qbert
 	std::shared_ptr<dae::GameObject> CreateTeleporter(std::shared_ptr<IsometricGrid> pGrid);
 
 	//Coily
-	std::shared_ptr<dae::GameObject> CreateCoily(std::shared_ptr<IsometricGrid> pGrid);
+	std::shared_ptr<dae::GameObject> CreateCoily(std::shared_ptr<IsometricGrid> pGrid, std::weak_ptr<qbert::Piramid> pPiramid);
 }

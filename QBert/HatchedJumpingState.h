@@ -5,7 +5,7 @@ namespace qbert
 	class HatchedJumpingState final : public CoilyState
 	{
 	public:
-		HatchedJumpingState(std::weak_ptr<dae::GameObject> pCoilyObject) : CoilyState(std::move(pCoilyObject)) {};
+		HatchedJumpingState(std::weak_ptr<dae::GameObject> pCoilyObject, std::weak_ptr<Piramid> pPiramid) : CoilyState(std::move(pCoilyObject), std::move(pPiramid)) {};
 
 		virtual void OnEnter() override;
 		virtual std::unique_ptr<CoilyState> Update() override { return nullptr; };
@@ -19,8 +19,8 @@ namespace qbert
 			Right_Down
 		};
 
-		FacingDirection m_facingDirection;
-		SDL_Rect m_spriteSrcRect;
+		FacingDirection m_facingDirection; //TODO
+		SDL_Rect m_spriteSrcRect; //TODO
 		glm::vec2 m_goalPos{ 0.f,0.f };
 	};
 }
