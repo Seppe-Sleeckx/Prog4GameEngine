@@ -34,9 +34,6 @@ dae::GameObject* EntityManager::GetClosestEnemyOnGrid(const IsometricGridPositio
 		if (pIsometricGridComponent->GetGrid() != isometric_pos.pGrid)
 			continue;
 
-		if (pIsometricGridComponent->GetIsometricPosition() == isometric_pos.position)
-			continue;
-
 		if (pClosestEnemy == nullptr)
 		{
 			pClosestEnemy = enemy.lock().get();
@@ -65,9 +62,6 @@ dae::GameObject* EntityManager::GetClosestQbertOnGrid(const IsometricGridPositio
 	{
 		auto pIsometricGridComponent = qbert.lock()->GetComponentByType<IsometricGridPositionComponent>();
 		if (pIsometricGridComponent->GetGrid() != isometric_pos.pGrid)
-			continue;
-
-		if (pIsometricGridComponent->GetIsometricPosition() == isometric_pos.position)
 			continue;
 
 		if (pClosestQbert == nullptr)

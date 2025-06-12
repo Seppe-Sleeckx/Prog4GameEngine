@@ -1,6 +1,7 @@
 #include "HatchedStaticState.h"
 #include "HatchedJumpingState.h"
 #include "Texture2DRenderer.h"
+#include "GameTime.h"
 using namespace qbert;
 void HatchedStaticState::OnEnter()
 {
@@ -12,8 +13,8 @@ std::unique_ptr<CoilyState> HatchedStaticState::FixedUpdate()
 {
 	//check collision with player
 	//Jump to next cube
-	static constexpr float jump_cooldown = 1.f;
-	if (m_jumpTimer >= jump_cooldown)
+	m_elapsedTime += std::chrono::duration<float>(dae::Time::GetInstance().GetFixedDeltaTime());
+	if (m_elapsedTime >= m_jumpCooldown)
 	{
 		return std::make_unique<HatchedJumpingState>(m_pCoilyObject, m_pPiramid);
 	}

@@ -3,6 +3,7 @@
 #include <memory>
 #include <SDL_rect.h>
 #include "StateHelpers.h"
+#include <chrono>
 namespace qbert
 {
 	class HatchedStaticState final : public CoilyState
@@ -32,7 +33,8 @@ namespace qbert
 		virtual std::unique_ptr<CoilyState> FixedUpdate() override;
 
 	private:
-		float m_jumpTimer{ 0.f };
+		const std::chrono::seconds m_jumpCooldown{ 1 }; //falls for x amount of seconds before calling reset
+		std::chrono::duration<float> m_elapsedTime{};
 		std::unique_ptr<SDL_Rect> m_spriteSrcRect;
 	};
 

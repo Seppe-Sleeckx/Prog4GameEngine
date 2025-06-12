@@ -18,23 +18,21 @@ void HatchedJumpingState::OnEnter()
 	const auto isometric_pos = m_pCoilyObject.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition();
 
 	m_goalPos = isometric_pos;
-	if (isometric_pos.x != qbert_pos.x)
+
+	float delta_x = qbert_pos.x - isometric_pos.x;
+	float delta_y = qbert_pos.y - isometric_pos.y;
+
+	if (std::abs(delta_x) > std::abs(delta_y)) //prefer the axis with the biggest distance
 	{
-		auto x_increment = (qbert_pos.x > isometric_pos.x) ? 1 : -1;
+		int x_increment = (delta_x > 0) ? 1 : -1;
 		m_goalPos.x += x_increment;
-		if (x_increment > 0)
-			m_facingDirection = FacingDirection::Right_Down;
-		else if (x_increment < 0)
-			m_facingDirection = FacingDirection::Left_Up;
+		m_facingDirection = (x_increment > 0) ? FacingDirection::Right_Down : FacingDirection::Left_Up;
 	}
-	else if (isometric_pos.y != qbert_pos.y)
+	else if (delta_y != 0)
 	{
-		auto y_increment = (qbert_pos.y > isometric_pos.x) ? 1 : -1;
+		int y_increment = (delta_y > 0) ? 1 : -1;
 		m_goalPos.y += y_increment;
-		if (y_increment > 0)
-			m_facingDirection = FacingDirection::Left_Down;
-		else if (y_increment < 0)
-			m_facingDirection = FacingDirection::Right_Up;
+		m_facingDirection = (y_increment > 0) ? FacingDirection::Left_Down : FacingDirection::Right_Up;
 	}
 
 	//Update src_rect to correct direction NOT CORRECT, CHANGE
@@ -45,13 +43,13 @@ void HatchedJumpingState::OnEnter()
 		src_rect = SDL_Rect( 48, 32, 16, 32);
 		break;
 	case qbert::FacingDirection::Left_Down:
-		src_rect = SDL_Rect(48, 32, 16, 32);
+		src_rect = SDL_Rect(112, 32, 16, 32);
 		break;
 	case qbert::FacingDirection::Right_Up:
-		src_rect = SDL_Rect(48, 32, 16, 32);
+		src_rect = SDL_Rect(16, 32, 16, 32);
 		break;
 	case qbert::FacingDirection::Right_Down:
-		src_rect = SDL_Rect(48, 32, 16, 32);
+		src_rect = SDL_Rect(80, 32, 16, 32);
 		break;
 	default:
 		break;
