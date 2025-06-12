@@ -19,6 +19,21 @@ namespace qbert
 		virtual void OnEnter() = 0;
 		virtual std::unique_ptr<QbertState> Update() = 0;
 		virtual std::unique_ptr<QbertState> FixedUpdate() = 0;
+
+		std::weak_ptr<qbert::Piramid> GetPiramid() { return m_pPiramid; }
+
+
+
+		enum class QbertStateType
+		{
+			Static,
+			Moving,
+			Falling,
+			Teleporter
+		};
+
+		virtual QbertStateType GetType() = 0;
+
 	protected:
 		std::weak_ptr<dae::GameObject> m_pQbertObject;
 		std::weak_ptr<qbert::Piramid> m_pPiramid;

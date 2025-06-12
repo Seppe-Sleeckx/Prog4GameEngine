@@ -43,11 +43,12 @@ std::unique_ptr<QbertState> QbertFallingState::Update()
 std::unique_ptr<QbertState> QbertFallingState::FixedUpdate()
 {
 	m_fallSpeed += 0.001f;
+	float speed = m_fallSpeed * static_cast<float>(dae::Time::GetInstance().GetFixedDeltaTime());
 	
 	auto goal_pos = m_pQbertObject.lock()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition();
 	goal_pos.x += 1;
 	goal_pos.y += 1;
-	m_pQbertObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(goal_pos, m_fallSpeed);
+	m_pQbertObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(goal_pos, speed);
 
 	return nullptr;
 }

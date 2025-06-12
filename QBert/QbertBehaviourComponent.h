@@ -12,8 +12,9 @@ namespace qbert
 		virtual void Update() override;
 		virtual void FixedUpdate() override;
 
-	private:
 		void ChangeState(std::unique_ptr<QbertState> pNewState);
+		QbertState* const GetState() { return m_pState.get(); }
+	private:
 		std::unique_ptr<QbertState> m_pState;
 	};
 }

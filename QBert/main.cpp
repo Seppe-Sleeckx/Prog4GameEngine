@@ -26,6 +26,7 @@
 #include "Subject.h"
 #include "Piramid.h"
 #include "PiramidComponent.h"
+#include "QbertCommands.h"
 
 using namespace dae;
 void load()
@@ -46,36 +47,6 @@ void load()
 	fpsObject->SetLocalPosition(220, 70);
 	fpsObject->AddComponent(std::move(fpsComponent));
 	scene.Add(fpsObject);
-
-	//Make first character
-	auto first_character_object = std::make_shared<dae::GameObject>();
-	auto move_component = std::make_unique<dae::MovementComponent>(first_character_object, 25.f);
-	auto texture2dRenderer_component = std::make_unique<dae::Texture2DRenderer>(first_character_object);
-	texture2dRenderer_component->SetTexture("MissPacMan.png");
-	auto first_health_subject = std::make_unique<dae::Subject>();
-	auto first_score_subject = std::make_unique<dae::Subject>();
-	auto first_health_component = std::make_unique<dae::HealthComponent>(first_character_object, 10.f, std::move(first_health_subject));
-	auto first_score_component = std::make_unique<dae::ScoreComponent>(first_character_object, std::move(first_score_subject));
-	first_character_object->AddComponent(std::move(move_component));
-	first_character_object->AddComponent(std::move(texture2dRenderer_component));
-	first_character_object->AddComponent(std::move(first_health_component));
-	first_character_object->AddComponent(std::move(first_score_component));
-	first_character_object->SetLocalPosition(250.f, 250.f);
-	scene.Add(first_character_object);
-
-	//Bind first character commands
-	auto move_up_command = std::make_shared<dae::MovePlayerCommand>(first_character_object, glm::vec2(0.f, -1.f));
-	auto move_down_command = std::make_shared<dae::MovePlayerCommand>(first_character_object, glm::vec2(0.f, 1.f));
-	auto move_left_command = std::make_shared<dae::MovePlayerCommand>(first_character_object, glm::vec2(-1.f, 0.f));
-	auto move_right_command = std::make_shared<dae::MovePlayerCommand>(first_character_object, glm::vec2(1.f, 0.f));
-	auto take_damage_command = std::make_shared<dae::TakeDamageCommand>(first_character_object);
-	auto Increase_score_command = std::make_shared<dae::IncreaseScoreCommand>(first_character_object, 10.f);
-	dae::InputManager::GetInstance().BindCommand(SDLK_w, move_up_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_s, move_down_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_a, move_left_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_d, move_right_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_SPACE, take_damage_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_z, Increase_score_command);
 
 	//Make second character
 	auto second_character_object = std::make_shared<dae::GameObject>();
@@ -111,59 +82,59 @@ void load()
 	//W5 Ex1. Lives display
 	//*****
 	//Health Display
-	auto health_display_object = std::make_shared<dae::GameObject>();
+	/*auto health_display_object = std::make_shared<dae::GameObject>();
 	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 10);
 	auto health_display_component = std::make_unique<dae::HealthDisplayComponent>("remaining health: " + std::to_string(first_character_object->GetComponentByType<dae::HealthComponent>()->GetHealth()), std::move(font), health_display_object);
 	first_character_object->GetComponentByType<dae::HealthComponent>()->GetSubject()->AddObserver(health_display_component.get());
 	health_display_object->SetLocalPosition(20.f, 200.f);
 	health_display_object->AddComponent(std::move(health_display_component));
-	scene.Add(health_display_object);
+	scene.Add(health_display_object);*/
 
 	//W5 Ex2. Score display
 	//*****
 	//Score Display
-	auto score_display_object = std::make_shared<dae::GameObject>();
+	/*auto score_display_object = std::make_shared<dae::GameObject>();
 	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 10);
 	auto score_display_component = std::make_unique<dae::ScoreDisplayComponent>("Score: " + std::to_string(first_character_object->GetComponentByType<dae::ScoreComponent>()->GetScore()), std::move(font), score_display_object);
 	first_character_object->GetComponentByType<dae::ScoreComponent>()->GetSubject()->AddObserver(score_display_component.get());
 	score_display_object->SetLocalPosition(20.f, 220.f);
 	score_display_object->AddComponent(std::move(score_display_component));
-	scene.Add(score_display_object);
+	scene.Add(score_display_object);*/
 
 	//W5 Ex2. Both players
 	//*****
 	//Health Display
-	auto second_health_display_object = std::make_shared<dae::GameObject>();
+	/*auto second_health_display_object = std::make_shared<dae::GameObject>();
 	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 10);
 	auto second_health_display_component = std::make_unique<dae::HealthDisplayComponent>("remaining health: " + std::to_string(second_character_object->GetComponentByType<dae::HealthComponent>()->GetHealth()), std::move(font), second_health_display_object);
 	second_character_object->GetComponentByType<dae::HealthComponent>()->GetSubject()->AddObserver(second_health_display_component.get());
 	second_health_display_object->SetLocalPosition(20.f, 250.f);
 	second_health_display_object->AddComponent(std::move(second_health_display_component));
-	scene.Add(second_health_display_object);
+	scene.Add(second_health_display_object);*/
 
 	//Score Display
-	auto second_score_display_object = std::make_shared<dae::GameObject>();
+	/*auto second_score_display_object = std::make_shared<dae::GameObject>();
 	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 10);
 	auto second_score_display_component = std::make_unique<dae::ScoreDisplayComponent>("Score: " + std::to_string(second_character_object->GetComponentByType<dae::ScoreComponent>()->GetScore()), std::move(font), second_score_display_object);
 	second_character_object->GetComponentByType<dae::ScoreComponent>()->GetSubject()->AddObserver(second_score_display_component.get());
 	second_score_display_object->SetLocalPosition(20.f, 270.f);
 	second_score_display_object->AddComponent(std::move(second_score_display_component));
-	scene.Add(second_score_display_object);
+	scene.Add(second_score_display_object);*/
 
 
 	//W7 Sound
-	auto Play_sound_command = std::make_shared<PlaySoundCommand>("../data/Victory_SFX.wav");
-	InputManager::GetInstance().BindCommand(SDLK_j, Play_sound_command);
+	/*auto Play_sound_command = std::make_shared<PlaySoundCommand>("../data/Victory_SFX.wav");
+	InputManager::GetInstance().BindCommand(SDLK_j, Play_sound_command);*/
 
 	//Controls explanation
-	auto keyboard_controls_text_object = std::make_shared<dae::GameObject>();
+	/*auto keyboard_controls_text_object = std::make_shared<dae::GameObject>();
 	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 13);
 	auto text_component = std::make_unique<dae::TextComponent>("Controls player 1: (Take damage: SPACE) (increase score: Z)", std::move(font), keyboard_controls_text_object);
 	keyboard_controls_text_object->AddComponent(std::move(text_component));
 	keyboard_controls_text_object->SetLocalPosition(20.f, 140.f);
-	scene.Add(keyboard_controls_text_object);
+	scene.Add(keyboard_controls_text_object);*/
 
-	auto controller_controls_text_object = std::make_shared<dae::GameObject>();
+	/*auto controller_controls_text_object = std::make_shared<dae::GameObject>();
 	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 13);
 	auto second_text_component = std::make_unique<dae::TextComponent>("Controls player 2: (Take damage: X) (increase score: A)", std::move(font), controller_controls_text_object);
 	controller_controls_text_object->AddComponent(std::move(second_text_component));
@@ -175,7 +146,7 @@ void load()
 	auto third_text_component = std::make_unique<dae::TextComponent>("Controls sound: (Play sound: J)", std::move(font), extra_controls_text_object);
 	extra_controls_text_object->AddComponent(std::move(third_text_component));
 	extra_controls_text_object->SetLocalPosition(20.f, 300.f);
-	scene.Add(extra_controls_text_object);
+	scene.Add(extra_controls_text_object);*/
 
 
 	///QBERT
@@ -211,6 +182,14 @@ void load()
 
 	//Qbert (test)
 	auto qbert = qbert::CreateQbert(grid, piramid);
+	auto move_qbert_LU_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Left_Up);
+	auto move_qbert_LD_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Left_Down);
+	auto move_qbert_RU_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Right_Up);
+	auto move_qbert_RD_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Right_Down);
+	dae::InputManager::GetInstance().BindCommand(SDLK_w, move_qbert_LU_command);
+	dae::InputManager::GetInstance().BindCommand(SDLK_d, move_qbert_RU_command);
+	dae::InputManager::GetInstance().BindCommand(SDLK_a, move_qbert_LD_command);
+	dae::InputManager::GetInstance().BindCommand(SDLK_s, move_qbert_RD_command);
 	scene.Add(qbert);
 	
 };

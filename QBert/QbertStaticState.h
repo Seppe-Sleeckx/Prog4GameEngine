@@ -15,7 +15,7 @@ namespace qbert
 		virtual std::unique_ptr<QbertState> Update() override { return nullptr; };
 		virtual std::unique_ptr<QbertState> FixedUpdate() override { return nullptr; };
 
-
+		virtual QbertStateType GetType() override { return QbertStateType::Static; }
 	private:
 		FacingDirection m_facingDirection{ FacingDirection::Left_Down };
 	};

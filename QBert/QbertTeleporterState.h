@@ -11,6 +11,8 @@ namespace qbert
 		virtual void OnEnter() override;
 		virtual std::unique_ptr<QbertState> Update() override { return nullptr; };
 		virtual std::unique_ptr<QbertState> FixedUpdate() override;
+
+		virtual QbertStateType GetType() override { return QbertStateType::Teleporter; }
 	private:
 		glm::vec2 m_goalPos{ 0.f,0.f };
 	};
