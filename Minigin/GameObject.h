@@ -25,6 +25,9 @@ namespace dae
 		void FixedUpdate();
 		void Render() const;
 
+		void Destroy() { m_toBeDestroyed = true; };
+		bool ToBeDestroyed() { return m_toBeDestroyed; };
+
 		void AddComponent(std::unique_ptr<Component> component);
 		template<typename CT>
 		bool RemoveComponent()
@@ -115,5 +118,6 @@ namespace dae
 		std::unique_ptr<dae::Transform> m_pWorldTransform; //Stores the cached world transform, only get recalculated if parents change
 		std::vector<GameObject*> m_children{};
 		GameObject* m_pParent{ nullptr };
+		bool m_toBeDestroyed{ false };
 	};
 }

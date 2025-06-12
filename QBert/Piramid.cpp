@@ -23,6 +23,23 @@ bool Piramid::AddTeleporterToPiramid(std::shared_ptr<dae::GameObject> pTeleporte
 	return false;
 }
 
+bool Piramid::DeleteTeleporterAtWorldPos(const glm::vec2& world_pos)
+{
+	auto it = std::find_if(m_Cubes.begin(), m_Cubes.end(), [world_pos](auto cube) { return static_cast<glm::vec2>(cube.get()->GetWorldTransform().GetPosition()) == world_pos; });
+	if (it != m_Cubes.end())
+	{
+		it->get()->Destroy();
+		m_Cubes.erase(it);
+		return true;
+	}
+	return false;
+}
+
+bool Piramid::DeleteTeleporterAtIsometricPos(const glm::vec2& iso_pos)
+{
+	return DeleteTeleporterAtWorldPos(m_pGrid->IsometricGridToWorldSpace(iso_pos));
+}
+
 dae::GameObject* const Piramid::GetCubeAtIsometricPos(const glm::vec2& isometric_pos) const
 {
 	return GetCubeAtWorldPos(m_pGrid->IsometricGridToWorldSpace(isometric_pos));

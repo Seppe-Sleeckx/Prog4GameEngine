@@ -28,6 +28,13 @@ void QbertFallingState::OnEnter()
 
 	m_pQbertObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetSrcRect(src_rect);
 	m_pQbertObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetTexture("Qbert.png");
+
+	//Set goal pos
+	glm::vec2 iso_pos = m_pQbertObject.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition();
+	if (iso_pos.x < 0 && iso_pos.y < 0 && iso_pos.x == iso_pos.y)
+		m_goalPos = glm::vec2{ 0,0 };
+	else
+		m_goalPos = glm::vec2(iso_pos.x + 10, iso_pos.y + 10);
 }
 
 std::unique_ptr<QbertState> QbertFallingState::Update()
@@ -42,13 +49,10 @@ std::unique_ptr<QbertState> QbertFallingState::Update()
 
 std::unique_ptr<QbertState> QbertFallingState::FixedUpdate()
 {
-	m_fallSpeed += 0.001f;
+	m_fallSpeed += 0.1f * static_cast<float>(dae::Time::GetInstance().GetFixedDeltaTime());
 	float speed = m_fallSpeed * static_cast<float>(dae::Time::GetInstance().GetFixedDeltaTime());
 	
-	auto goal_pos = m_pQbertObject.lock()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition();
-	goal_pos.x += 1;
-	goal_pos.y += 1;
-	m_pQbertObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(goal_pos, speed);
+	m_pQbertObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(m_goalPos, speed);
 
 	return nullptr;
 }

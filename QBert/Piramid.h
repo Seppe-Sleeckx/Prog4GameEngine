@@ -19,6 +19,9 @@ namespace qbert
 		bool AddCubeToPiramid(std::shared_ptr<dae::GameObject> pCube);
 		bool AddTeleporterToPiramid(std::shared_ptr<dae::GameObject> pTeleporter);
 
+		bool DeleteTeleporterAtWorldPos(const glm::vec2& world_pos);
+		bool DeleteTeleporterAtIsometricPos(const glm::vec2& iso_pos);
+
 
 		dae::GameObject* const GetCubeAtIsometricPos(const glm::vec2& isometric_pos) const;
 		dae::GameObject* const GetCubeAtWorldPos(const glm::vec2& world_pos) const;

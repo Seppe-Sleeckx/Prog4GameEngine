@@ -16,8 +16,6 @@
 #include "FPSComponent.h"
 #include "MovementComponent.h"
 #include "HealthComponent.h"
-#include "ScoreComponent.h"
-#include "PlayerCommands.h"
 #include "HealthDisplayComponent.h"
 #include "ScoreDisplayComponent.h"
 #include "ServiceLocator.h"
@@ -49,34 +47,34 @@ void load()
 	scene.Add(fpsObject);
 
 	//Make second character
-	auto second_character_object = std::make_shared<dae::GameObject>();
-	auto second_move_component = std::make_unique<dae::MovementComponent>(second_character_object, 50.f);
-	auto second_texture2dRenderer_component = std::make_unique<dae::Texture2DRenderer>(second_character_object);
-	auto second_health_subject = std::make_unique<dae::Subject>();
-	auto second_score_subject = std::make_unique<dae::Subject>();
-	auto second_health_component = std::make_unique<dae::HealthComponent>(second_character_object, 10.f, std::move(second_health_subject));
-	auto second_score_component = std::make_unique<dae::ScoreComponent>(second_character_object, std::move(second_score_subject));
-	second_texture2dRenderer_component->SetTexture("ScaredGhost.png");
-	second_character_object->AddComponent(std::move(second_move_component));
-	second_character_object->AddComponent(std::move(second_texture2dRenderer_component));
-	second_character_object->AddComponent(std::move(second_health_component));
-	second_character_object->AddComponent(std::move(second_score_component));
-	second_character_object->SetLocalPosition(300.f, 300.f);
-	scene.Add(second_character_object);
+	//auto second_character_object = std::make_shared<dae::GameObject>();
+	//auto second_move_component = std::make_unique<dae::MovementComponent>(second_character_object, 50.f);
+	//auto second_texture2dRenderer_component = std::make_unique<dae::Texture2DRenderer>(second_character_object);
+	//auto second_health_subject = std::make_unique<dae::Subject>();
+	//auto second_score_subject = std::make_unique<dae::Subject>();
+	//auto second_health_component = std::make_unique<dae::HealthComponent>(second_character_object, 10.f, std::move(second_health_subject));
+	//auto second_score_component = std::make_unique<dae::ScoreComponent>(second_character_object, std::move(second_score_subject));
+	//second_texture2dRenderer_component->SetTexture("ScaredGhost.png");
+	//second_character_object->AddComponent(std::move(second_move_component));
+	//second_character_object->AddComponent(std::move(second_texture2dRenderer_component));
+	//second_character_object->AddComponent(std::move(second_health_component));
+	//second_character_object->AddComponent(std::move(second_score_component));
+	//second_character_object->SetLocalPosition(300.f, 300.f);
+	//scene.Add(second_character_object);
 
-	//Bind second character commands
-	auto second_move_up_command = std::make_shared<dae::MovePlayerCommand>(second_character_object, glm::vec2(0.f, -1.f));
-	auto second_move_down_command = std::make_shared<dae::MovePlayerCommand>(second_character_object, glm::vec2(0.f, 1.f));
-	auto second_move_left_command = std::make_shared<dae::MovePlayerCommand>(second_character_object, glm::vec2(-1.f, 0.f));
-	auto second_move_right_command = std::make_shared<dae::MovePlayerCommand>(second_character_object, glm::vec2(1.f, 0.f));
-	auto second_take_damage_command = std::make_shared<dae::TakeDamageCommand>(second_character_object);
-	auto second_increase_score_command = std::make_shared<dae::IncreaseScoreCommand>(second_character_object, 10.f);
-	dae::InputManager::GetInstance().BindCommand(WORD(0x0001), second_move_up_command);
-	dae::InputManager::GetInstance().BindCommand(WORD(0x0002), second_move_down_command);
-	dae::InputManager::GetInstance().BindCommand(WORD(0x0004), second_move_left_command);
-	dae::InputManager::GetInstance().BindCommand(WORD(0x0008), second_move_right_command);
-	dae::InputManager::GetInstance().BindCommand(WORD(0x4000), second_take_damage_command);
-	dae::InputManager::GetInstance().BindCommand(WORD(0x1000), second_increase_score_command);
+	////Bind second character commands
+	//auto second_move_up_command = std::make_shared<dae::MovePlayerCommand>(second_character_object, glm::vec2(0.f, -1.f));
+	//auto second_move_down_command = std::make_shared<dae::MovePlayerCommand>(second_character_object, glm::vec2(0.f, 1.f));
+	//auto second_move_left_command = std::make_shared<dae::MovePlayerCommand>(second_character_object, glm::vec2(-1.f, 0.f));
+	//auto second_move_right_command = std::make_shared<dae::MovePlayerCommand>(second_character_object, glm::vec2(1.f, 0.f));
+	//auto second_take_damage_command = std::make_shared<dae::TakeDamageCommand>(second_character_object);
+	//auto second_increase_score_command = std::make_shared<dae::IncreaseScoreCommand>(second_character_object, 10.f);
+	//dae::InputManager::GetInstance().BindCommand(WORD(0x0001), second_move_up_command);
+	//dae::InputManager::GetInstance().BindCommand(WORD(0x0002), second_move_down_command);
+	//dae::InputManager::GetInstance().BindCommand(WORD(0x0004), second_move_left_command);
+	//dae::InputManager::GetInstance().BindCommand(WORD(0x0008), second_move_right_command);
+	//dae::InputManager::GetInstance().BindCommand(WORD(0x4000), second_take_damage_command);
+	//dae::InputManager::GetInstance().BindCommand(WORD(0x1000), second_increase_score_command);
 
 
 	//W5 Ex1. Lives display

@@ -90,9 +90,6 @@
     <ClCompile Include="MovementComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerCommands.cpp">
-      <Filter>Source Files\Commands</Filter>
-    </ClCompile>
     <ClCompile Include="CoilyBehaviourComponent.cpp">
       <Filter>Source Files\Entities\Coily</Filter>
     </ClCompile>
@@ -175,9 +172,6 @@
     </ClInclude>
     <ClInclude Include="ScoreComponent.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerCommands.h">
-      <Filter>Header Files\Commands</Filter>
     </ClInclude>
     <ClInclude Include="IsometricGrid.h">
       <Filter>Header Files\Level</Filter>

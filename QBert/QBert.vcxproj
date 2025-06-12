@@ -172,7 +172,6 @@
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="Piramid.cpp" />
     <ClCompile Include="PiramidComponent.cpp" />
-    <ClCompile Include="PlayerCommands.cpp" />
     <ClCompile Include="QbertBehaviourComponent.cpp" />
     <ClCompile Include="QbertCommands.cpp" />
     <ClCompile Include="QbertFallingState.cpp" />
@@ -202,7 +201,6 @@
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="Piramid.h" />
     <ClInclude Include="PiramidComponent.h" />
-    <ClInclude Include="PlayerCommands.h" />
     <ClInclude Include="QbertBehaviourComponent.h" />
     <ClInclude Include="QbertCommands.h" />
     <ClInclude Include="QbertFallingState.h" />

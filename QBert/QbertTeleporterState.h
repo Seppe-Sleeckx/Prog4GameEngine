@@ -14,6 +14,7 @@ namespace qbert
 
 		virtual QbertStateType GetType() override { return QbertStateType::Teleporter; }
 	private:
-		glm::vec2 m_goalPos{ 0.f,0.f };
+		const glm::vec2 m_goalPos{ -1.f,-1.f };
+		const float m_speed{ 2.f };
 	};
 }

@@ -20,6 +20,7 @@ namespace qbert
 		const std::chrono::seconds m_fallTime{ 1 }; //falls for x amount of seconds before calling reset
 		std::chrono::duration<float> m_elapsedTime{};
 		float m_fallSpeed{ 1.f };
+		glm::vec2 m_goalPos;
 	};
 }
 

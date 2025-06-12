@@ -32,6 +32,11 @@ void Scene::Update()
 	{
 		object->Update();
 	}
+	for (auto& object : m_objects)
+	{
+		if (object->ToBeDestroyed())
+			Remove(object);
+	}
 }
 
 void Scene::FixedUpdate()

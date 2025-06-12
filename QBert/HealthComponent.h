@@ -17,7 +17,7 @@ namespace dae
 
 
 		void TakeDamage(int damage_amount);
-		float GetHealth() { return m_Health; };
+		int GetHealth() { return m_Health; };
 
 		Subject* const GetSubject() const { return m_Subject.get(); }
 
