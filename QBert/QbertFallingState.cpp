@@ -37,16 +37,6 @@ void QbertFallingState::OnEnter()
 		m_goalPos = glm::vec2(iso_pos.x + 10, iso_pos.y + 10);
 }
 
-std::unique_ptr<QbertState> QbertFallingState::Update()
-{
-	m_elapsedTime += std::chrono::duration<double>(dae::Time::GetInstance().GetDeltaTime());
-	if (m_elapsedTime > m_fallTime)
-	{
-		//call reset level event
-	}	
-	return nullptr;
-}
-
 std::unique_ptr<QbertState> QbertFallingState::FixedUpdate()
 {
 	m_fallSpeed += 0.1f * static_cast<float>(dae::Time::GetInstance().GetFixedDeltaTime());

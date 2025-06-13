@@ -18,5 +18,8 @@ namespace qbert
 	std::shared_ptr<dae::GameObject> CreateCoily(std::shared_ptr<IsometricGrid> pGrid, std::weak_ptr<qbert::Piramid> pPiramid);
 
 	//Qbert
-	std::shared_ptr<dae::GameObject> CreateQbert(std::shared_ptr<IsometricGrid> pGrid, std::weak_ptr<qbert::Piramid> pPiramid); //maybe also need piramid
+	std::shared_ptr<dae::GameObject> CreateQbert(std::shared_ptr<IsometricGrid> pGrid, std::weak_ptr<qbert::Piramid> pPiramid);
+
+	//TextBalloon
+	std::shared_ptr <dae::GameObject> CreateTextBalloon(std::shared_ptr<dae::GameObject> pParent);
 }

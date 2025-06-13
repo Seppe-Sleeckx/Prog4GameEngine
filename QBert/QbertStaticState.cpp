@@ -1,6 +1,10 @@
 #include "QbertStaticState.h"
 #include "Texture2DRenderer.h"
 #include "StateHelpers.h"
+#include "IsometricGridPositionComponent.h"
+#include "QbertObjects.h"
+#include "SceneManager.h"
+#include "Scene.h"
 using namespace qbert;
 
 void QbertStaticState::OnEnter()
@@ -27,4 +31,13 @@ void QbertStaticState::OnEnter()
 
 	m_pQbertObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetSrcRect(src_rect);
 	m_pQbertObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetTexture("Qbert.png");
+
+	//If not on valid cube spawn textballoon and disable commands
+	bool on_cube = m_pPiramid.lock()->GetCubeAtIsometricPos(m_pQbertObject.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition()) != nullptr;
+	if (!on_cube)
+	{
+		auto text_balloon = qbert::CreateTextBalloon(m_pQbertObject.lock());
+		dae::SceneManager::GetInstance().GetActiveScene()->Add(std::move(text_balloon));
+		//Call Take Damage Command
+	}
 }

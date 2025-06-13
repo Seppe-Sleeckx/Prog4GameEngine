@@ -18,6 +18,7 @@ namespace qbert
 		virtual QbertStateType GetType() override { return QbertStateType::Static; }
 	private:
 		FacingDirection m_facingDirection{ FacingDirection::Left_Down };
+		
 	};
 
 }

@@ -51,7 +51,7 @@ std::unique_ptr<QbertState> QbertMovingState::FixedUpdate()
 		else if (m_pPiramid.lock()->GetTeleporterAtIsometricPos(m_goalPos) != nullptr)
 			return std::make_unique<QbertTeleporterState>(m_pQbertObject, m_pPiramid);
 		else
-			return std::make_unique<QbertFallingState>(m_pQbertObject, m_pPiramid, m_facingDirection);
+			return std::make_unique<QbertStaticState>(m_pQbertObject, m_pPiramid, m_facingDirection);
 	}
 	return nullptr;
 }

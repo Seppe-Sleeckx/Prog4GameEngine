@@ -37,6 +37,7 @@ void load()
 	srand(static_cast<unsigned int>(time(nullptr)));
 
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
+	dae::SceneManager::GetInstance().SetActiveScene(scene.GetName());
 
 	//Make FPS
 	auto fpsObject = std::make_shared<dae::GameObject>();
@@ -161,13 +162,14 @@ void load()
 	piramid_object->SetLocalPosition(0.f, 0.f);
 	scene.Add(piramid_object);
 
-
+	//Add Cubes
 	auto piramid = piramid_object->GetComponentByType<qbert::PiramidComponent>()->GetPiramid();
 	auto cubes = piramid->GetCubes();
 	for (const auto& cube : cubes)
 	{
 		scene.Add(cube);
 	}
+	//Add Teleporters
 	auto teleporters = piramid->GetTeleporters();
 	for (const auto& teleporter : teleporters)
 	{

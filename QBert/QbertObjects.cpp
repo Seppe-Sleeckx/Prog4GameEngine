@@ -93,27 +93,52 @@ std::shared_ptr<dae::GameObject> qbert::CreateQbert(std::shared_ptr<IsometricGri
 {
 	auto qbert = std::make_shared<dae::GameObject>();
 
+	//Isometric grid component
 	auto isometric_grid_position_component = std::make_unique<qbert::IsometricGridPositionComponent>(qbert, pGrid);
 	isometric_grid_position_component->SetIsometricPosition(pGrid->WorldToIsometricGridSpace(qbert->GetWorldTransform().GetPosition()));
 	qbert->AddComponent(std::move(isometric_grid_position_component));
 
+	//Texture2DRenderer component
 	auto texture_component = std::make_unique<dae::Texture2DRenderer>(qbert);
+	texture_component->SetTexture("Qbert.png");
 	qbert->AddComponent(std::move(texture_component));
 
+	//Qbert behaviour component
 	auto qbert_behaviour_component = std::make_unique<qbert::QbertBehaviourComponent>(qbert, std::move(pPiramid));
 	qbert->AddComponent(std::move(qbert_behaviour_component));
 
+	//Local Pos + Scale
 	qbert->SetLocalScale({ pGrid->tile_width / (16.f * 2.f), pGrid->tile_height / (16.f * 2.f), 1.f });
 
+	//EntityManager
 	EntityManager::GetInstance().AddQbert(qbert);
-
-
-	// -----
-	// Commands
-	// -----
 
 
 	return qbert;
 }
 
+#pragma endregion
+
+
+// -----
+// TextBalloon
+// -----
+#pragma region TextBalloon
+std::shared_ptr<dae::GameObject> qbert::CreateTextBalloon(std::shared_ptr<dae::GameObject> pParent)
+{
+	auto text_balloon = std::make_shared<dae::GameObject>();
+
+	auto texture_component = std::make_unique<dae::Texture2DRenderer>(text_balloon);
+	texture_component->SetTexture("Qbert.png");
+	texture_component->SetSrcRect(SDL_Rect{ 128, 80, 48, 32 });
+
+	text_balloon->AddComponent(std::move(texture_component));
+
+	text_balloon->SetLocalScale(glm::vec3(0.5f, 0.5f, 1.f));
+	text_balloon->SetLocalPosition(glm::vec3(0.f, -24.f, 0.f));
+
+	text_balloon->SetParent(pParent.get(), false);
+
+	return text_balloon;
+}
 #pragma endregion

@@ -32,10 +32,17 @@ void Scene::Update()
 	{
 		object->Update();
 	}
+
+	std::vector<std::shared_ptr<GameObject>> to_remove;
 	for (auto& object : m_objects)
 	{
 		if (object->ToBeDestroyed())
-			Remove(object);
+			to_remove.push_back(object);
+	}
+
+	for (auto& object : to_remove)
+	{
+		Remove(object);
 	}
 }
 

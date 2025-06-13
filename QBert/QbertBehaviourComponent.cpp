@@ -26,6 +26,9 @@ void QbertBehaviourComponent::FixedUpdate()
 
 void QbertBehaviourComponent::ChangeState(std::unique_ptr<QbertState> pNewState)
 {
+	if(m_pState.get() != nullptr)
+		m_pState->OnExit();
+
 	m_pState = std::move(pNewState);
 	m_pState->OnEnter();
 }

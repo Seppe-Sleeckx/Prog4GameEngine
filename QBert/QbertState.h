@@ -17,6 +17,7 @@ namespace qbert
 		QbertState& operator=(QbertState&& other) = delete;
 
 		virtual void OnEnter() = 0;
+		virtual void OnExit() {};
 		virtual std::unique_ptr<QbertState> Update() = 0;
 		virtual std::unique_ptr<QbertState> FixedUpdate() = 0;
 

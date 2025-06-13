@@ -17,7 +17,7 @@ bool Piramid::AddTeleporterToPiramid(std::shared_ptr<dae::GameObject> pTeleporte
 {
 	if (GetCubeAtIsometricPos(pTeleporter->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition()) == nullptr)
 	{
-		m_Cubes.push_back(std::move(pTeleporter));
+		m_Teleporters.push_back(std::move(pTeleporter));
 		return true;
 	}
 	return false;
@@ -25,11 +25,11 @@ bool Piramid::AddTeleporterToPiramid(std::shared_ptr<dae::GameObject> pTeleporte
 
 bool Piramid::DeleteTeleporterAtWorldPos(const glm::vec2& world_pos)
 {
-	auto it = std::find_if(m_Cubes.begin(), m_Cubes.end(), [world_pos](auto cube) { return static_cast<glm::vec2>(cube.get()->GetWorldTransform().GetPosition()) == world_pos; });
-	if (it != m_Cubes.end())
+	auto it = std::find_if(m_Teleporters.begin(), m_Teleporters.end(), [world_pos](auto cube) { return static_cast<glm::vec2>(cube.get()->GetWorldTransform().GetPosition()) == world_pos; });
+	if (it != m_Teleporters.end())
 	{
 		it->get()->Destroy();
-		m_Cubes.erase(it);
+		m_Teleporters.erase(it);
 		return true;
 	}
 	return false;
