@@ -112,7 +112,7 @@ void LevelManager::WriteAllLevelsToFile()
 		for (int roundIdx = 1; roundIdx < rounds+1; roundIdx++)
 		{
 			auto params = GetCubeLevelParameterDefinition(levelIdx, roundIdx);
-			std::string file_name = std::format("Level{}Round{}", levelIdx, roundIdx);
+			std::string file_name = std::format("../Data/Level{}Round{}", levelIdx, roundIdx);
 			WriteLevelToFile(params, file_name);
 		}
 	}
@@ -161,7 +161,7 @@ void LevelManager::ReadAllLevelsFromFile()
 	{
 		for (int roundIdx = 1; roundIdx < rounds + 1; roundIdx++)
 		{
-			std::string file_name = std::format("Level{}Round{}", levelIdx, roundIdx);
+			std::string file_name = std::format("../Data/Level{}Round{}", levelIdx, roundIdx);
 			m_levelCubeParameters.insert({{levelIdx, roundIdx},ReadLevelFromFile(file_name)});
 		}
 	}
