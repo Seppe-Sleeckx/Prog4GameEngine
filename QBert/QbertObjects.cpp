@@ -141,7 +141,7 @@ std::shared_ptr<dae::GameObject> qbert::CreateQbert(std::shared_ptr<IsometricGri
 // TextBalloon
 // -----
 #pragma region TextBalloon
-std::shared_ptr<dae::GameObject> qbert::CreateTextBalloon(std::shared_ptr<dae::GameObject> pParent)
+std::shared_ptr<dae::GameObject> qbert::CreateTextBalloon(dae::GameObject* const pParent)
 {
 	auto text_balloon = std::make_shared<dae::GameObject>();
 
@@ -154,7 +154,7 @@ std::shared_ptr<dae::GameObject> qbert::CreateTextBalloon(std::shared_ptr<dae::G
 	text_balloon->SetLocalScale(glm::vec3(0.5f, 0.5f, 1.f));
 	text_balloon->SetLocalPosition(glm::vec3(0.f, -24.f, 0.f));
 
-	text_balloon->SetParent(pParent.get(), false);
+	text_balloon->SetParent(pParent, false);
 
 	return text_balloon;
 }

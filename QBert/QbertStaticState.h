@@ -13,16 +13,12 @@ namespace qbert
 		virtual ~QbertStaticState() = default;
 
 		virtual void OnEnter() override;
-		virtual std::unique_ptr<QbertState> Update() override;
+		virtual std::unique_ptr<QbertState> Update() override { return nullptr; };
 		virtual std::unique_ptr<QbertState> FixedUpdate() override { return nullptr; };
 
 		virtual QbertStateType GetType() override { return QbertStateType::Static; }
 	private:
 		FacingDirection m_facingDirection{ FacingDirection::Left_Down };
-		const float m_stunnedTime{ 2.f };
-		float m_stunnedTimer{ 0.f };
-		bool m_stunned{ false };
-		std::weak_ptr<dae::GameObject> m_textBalloon{};
 	};
 
 }

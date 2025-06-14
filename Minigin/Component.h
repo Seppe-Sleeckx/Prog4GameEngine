@@ -28,6 +28,7 @@ namespace dae
 			m_pOwner{ game_object } {}
 
 		GameObject* GetOwner() const { return m_pOwner.lock().get(); }
+		std::weak_ptr<dae::GameObject> GetOwnerWeakPtr() const { return m_pOwner; }
 	private:
 		std::weak_ptr<GameObject> m_pOwner;
 	};

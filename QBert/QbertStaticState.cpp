@@ -41,12 +41,6 @@ void QbertStaticState::OnEnter()
 		//Call Take Damage command
 		QbertTakeDamageCommand take_damage_command{ m_pQbertObject };
 		take_damage_command.Execute();
-
-		//Spawn textballoon
-		auto text_balloon = qbert::CreateTextBalloon(m_pQbertObject.lock());
-		m_textBalloon = text_balloon;
-		dae::SceneManager::GetInstance().GetActiveScene()->Add(std::move(text_balloon));
-		m_stunned = true;
 	}
 	else //Change color of cube were on
 	{
@@ -55,17 +49,3 @@ void QbertStaticState::OnEnter()
 	}
 }
 
-std::unique_ptr<QbertState> QbertStaticState::Update()
-{
-	if (m_stunned)
-	{
-		m_stunnedTimer += static_cast<float>(dae::Time::GetInstance().GetDeltaTime());
-		if (m_stunnedTimer >= m_stunnedTime)
-		{
-			m_textBalloon.lock()->Destroy();
-			auto respawn_command = QbertRespawnCommand(m_pQbertObject);
-			respawn_command.Execute();
-		}
-	}
-	return nullptr;
-}

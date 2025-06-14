@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "GameTime.h"
 #include "QbertCommands.h"
+#include "EntityManager.h"
 using namespace qbert;
 
 void EggJumpingState::OnEnter()
@@ -38,6 +39,17 @@ std::unique_ptr<CoilyState> EggJumpingState::FixedUpdate()
 	//Update pos
 	auto speed = m_speed * static_cast<float>(dae::Time::GetInstance().GetFixedDeltaTime());
 	m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(m_pGoalPosition->position, speed);
+
+	auto iso_pos = m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricGridPosition();
+
+	auto qbert = EntityManager::GetInstance().GetClosestQbertOnGrid(iso_pos);
+	auto qbert_pos = qbert.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition();
+	if (glm::length(qbert_pos - iso_pos.position) < 0.1f)
+	{
+		auto qbert_take_damage_command = QbertTakeDamageCommand(qbert);
+		qbert_take_damage_command.Execute();
+		EntityManager::GetInstance().DeleteEnemies();
+	}
 
 	if (m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition() == m_pGoalPosition->position)
 	{

@@ -2,18 +2,18 @@
 #include "IsometricGridPositionComponent.h"
 using namespace qbert;
 
-dae::GameObject* EntityManager::GetClosestEntityOnGrid(const IsometricGridPosition& isometric_pos)
+std::weak_ptr<dae::GameObject> EntityManager::GetClosestEntityOnGrid(const IsometricGridPosition& isometric_pos)
 {
 	const auto closest_enemy = GetClosestEnemyOnGrid(isometric_pos);
 	const auto closest_qbert = GetClosestQbertOnGrid(isometric_pos);
 
-	if (!closest_enemy && !closest_qbert) return nullptr;
-	if (!closest_enemy) return closest_qbert;
-	if (!closest_qbert) return closest_enemy;
+	if (!closest_enemy.lock() && !closest_qbert.lock()) return std::weak_ptr<dae::GameObject>();
+	if (!closest_enemy.lock()) return closest_qbert;
+	if (!closest_qbert.lock()) return closest_enemy;
 
 
-	float distance_to_enemy = glm::length(isometric_pos.position - closest_enemy->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition());
-	float distance_to_qbert = glm::length(isometric_pos.position - closest_qbert->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition());
+	float distance_to_enemy = glm::length(isometric_pos.position - closest_enemy.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition());
+	float distance_to_qbert = glm::length(isometric_pos.position - closest_qbert.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition());
 
 	if (distance_to_enemy > distance_to_qbert)
 		return closest_enemy;
@@ -21,10 +21,10 @@ dae::GameObject* EntityManager::GetClosestEntityOnGrid(const IsometricGridPositi
 		return closest_qbert;
 }
 
-dae::GameObject* EntityManager::GetClosestEnemyOnGrid(const IsometricGridPosition& isometric_pos)
+std::weak_ptr<dae::GameObject> EntityManager::GetClosestEnemyOnGrid(const IsometricGridPosition& isometric_pos)
 {
 	if (std::ssize(m_enemies) <= 0)
-		return nullptr;
+		return std::weak_ptr<dae::GameObject>();
 
 	dae::GameObject* pClosestEnemy{ nullptr };
 	float closest_distance{ std::numeric_limits<float>::max() };
@@ -48,13 +48,14 @@ dae::GameObject* EntityManager::GetClosestEnemyOnGrid(const IsometricGridPositio
 		}
 	}
 
-	return pClosestEnemy;
+	auto it = std::find_if(m_qberts.begin(), m_qberts.end(), [pClosestEnemy](auto enemy) {return pClosestEnemy == enemy.lock().get(); });
+	return *it;
 }
 
-dae::GameObject* EntityManager::GetClosestQbertOnGrid(const IsometricGridPosition& isometric_pos)
+std::weak_ptr<dae::GameObject> EntityManager::GetClosestQbertOnGrid(const IsometricGridPosition& isometric_pos)
 {
 	if (std::ssize(m_qberts) <= 0)
-		return nullptr;
+		return std::weak_ptr<dae::GameObject>();
 
 	dae::GameObject* pClosestQbert{ nullptr };
 	float closest_distance{ std::numeric_limits<float>::max() };
@@ -78,7 +79,8 @@ dae::GameObject* EntityManager::GetClosestQbertOnGrid(const IsometricGridPositio
 		}
 	}
 
-	return pClosestQbert;
+	auto it = std::find_if(m_qberts.begin(), m_qberts.end(), [pClosestQbert](auto qbert) {return pClosestQbert == qbert.lock().get(); });
+	return *it;
 }
 
 void EntityManager::DeleteEnemies()

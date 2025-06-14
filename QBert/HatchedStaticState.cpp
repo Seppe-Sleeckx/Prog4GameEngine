@@ -2,6 +2,9 @@
 #include "HatchedJumpingState.h"
 #include "Texture2DRenderer.h"
 #include "GameTime.h"
+#include "IsometricGridPositionComponent.h"
+#include "EntityManager.h"
+#include "QbertCommands.h"
 using namespace qbert;
 void HatchedStaticState::OnEnter()
 {
@@ -11,8 +14,17 @@ void HatchedStaticState::OnEnter()
 
 std::unique_ptr<CoilyState> HatchedStaticState::FixedUpdate()
 {
-	//check collision with player
-	//Jump to next cube
+	auto iso_pos = m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricGridPosition();
+
+	auto qbert = EntityManager::GetInstance().GetClosestQbertOnGrid(iso_pos);
+	auto qbert_pos = qbert.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition();
+	if (glm::length(qbert_pos - iso_pos.position) < 0.1f)
+	{
+		auto qbert_take_damage_command = QbertTakeDamageCommand(qbert);
+		qbert_take_damage_command.Execute();
+		EntityManager::GetInstance().DeleteEnemies();
+	}
+
 	m_elapsedTime += std::chrono::duration<float>(dae::Time::GetInstance().GetFixedDeltaTime());
 	if (m_elapsedTime >= m_jumpCooldown)
 	{

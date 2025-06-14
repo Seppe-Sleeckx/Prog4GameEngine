@@ -20,9 +20,9 @@ namespace qbert
 		EntityManager& operator=(const EntityManager&) = delete;
 		EntityManager& operator=(EntityManager&&) = delete;
 
-		dae::GameObject* GetClosestEntityOnGrid(const IsometricGridPosition& pos);
-		dae::GameObject* GetClosestEnemyOnGrid(const IsometricGridPosition& pos);
-		dae::GameObject* GetClosestQbertOnGrid(const IsometricGridPosition& pos);
+		std::weak_ptr<dae::GameObject> GetClosestEntityOnGrid(const IsometricGridPosition& pos);
+		std::weak_ptr<dae::GameObject> GetClosestEnemyOnGrid(const IsometricGridPosition& pos);
+		std::weak_ptr<dae::GameObject> GetClosestQbertOnGrid(const IsometricGridPosition& pos);
 
 		void Reset() { m_enemies.clear(); m_qberts.clear(); };
 		void DeleteEnemies();

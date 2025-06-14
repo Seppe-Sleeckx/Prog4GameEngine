@@ -5,6 +5,8 @@
 #include "Texture2DRenderer.h"
 #include "GameObject.h"
 #include "IsometricGridPositionComponent.h"
+#include "QbertCommands.h"
+#include "EntityManager.h"
 using namespace qbert;
 
 void EggStaticState::OnEnter()
@@ -21,6 +23,17 @@ std::unique_ptr<CoilyState> EggStaticState::Update()
 
 std::unique_ptr<CoilyState> EggStaticState::FixedUpdate()
 {
+	auto iso_pos = m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricGridPosition();
+
+	auto qbert = EntityManager::GetInstance().GetClosestQbertOnGrid(iso_pos);
+	auto qbert_pos = qbert.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition();
+	if (glm::length(qbert_pos - iso_pos.position) < 0.1f)
+	{
+		auto qbert_take_damage_command = QbertTakeDamageCommand(qbert);
+		qbert_take_damage_command.Execute();
+		EntityManager::GetInstance().DeleteEnemies();
+	}
+
 	//return std::make_unique<HatchedStaticState>(m_pCoilyObject);
 	static constexpr float jump_cooldown = 1.f;
 	if (m_jumpTimer >= jump_cooldown)

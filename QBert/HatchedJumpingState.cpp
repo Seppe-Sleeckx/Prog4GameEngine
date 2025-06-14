@@ -12,11 +12,12 @@ HatchedJumpingState::HatchedJumpingState(std::weak_ptr<dae::GameObject> pCoilyOb
 
 void HatchedJumpingState::OnEnter()
 {
+	//set goal_pos
 	auto qbert_target = EntityManager::GetInstance().GetClosestQbertOnGrid(m_pCoilyObject.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricGridPosition());
-	if (!qbert_target)
+	if (!qbert_target.lock())
 		return;
 
-	auto qbert_pos = qbert_target->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition();
+	auto qbert_pos = qbert_target.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition();
 	const auto isometric_pos = m_pCoilyObject.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition();
 
 	m_goalPos = isometric_pos;
@@ -71,7 +72,18 @@ std::unique_ptr<CoilyState> HatchedJumpingState::FixedUpdate()
 	auto speed = m_speed * static_cast<float>(dae::Time::GetInstance().GetFixedDeltaTime());
 	m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(m_goalPos, speed);
 
-	if (m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition() == m_goalPos)
+	auto iso_pos = m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricGridPosition();
+
+	auto qbert = EntityManager::GetInstance().GetClosestQbertOnGrid(iso_pos);
+	auto qbert_pos = qbert.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition();
+	if (glm::length(qbert_pos - iso_pos.position) < 0.1f)
+	{
+		auto qbert_take_damage_command = QbertTakeDamageCommand(qbert);
+		qbert_take_damage_command.Execute();
+		EntityManager::GetInstance().DeleteEnemies();
+	}
+
+	if (iso_pos.position == m_goalPos)
 	{
 		return std::make_unique<HatchedStaticState>(m_pCoilyObject, m_pPiramid, m_facingDirection);
 	}

@@ -19,7 +19,7 @@ namespace qbert
 	private:
 		const FacingDirection m_facingDirection;
 		float m_fallSpeed{ 2.f };
-		glm::vec2 m_goalPos;
+		glm::vec2 m_goalPos{0.f,0.f};
 	};
 }
 
