@@ -3,7 +3,9 @@
 #include "EntityManager.h"
 #include "IsometricGridPositionComponent.h"
 #include "HatchedStaticState.h"
+#include "GameTime.h"
 #include "Texture2DRenderer.h"
+#include "QbertCommands.h"
 using namespace qbert;
 
 HatchedJumpingState::HatchedJumpingState(std::weak_ptr<dae::GameObject> pCoilyObject, std::weak_ptr<Piramid> pPiramid) : CoilyState(std::move(pCoilyObject), std::move(pPiramid)) {};
@@ -57,12 +59,17 @@ void HatchedJumpingState::OnEnter()
 
 	m_pCoilyObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetSrcRect(src_rect);
 	m_pCoilyObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetTexture("Qbert.png");
+
+	//Play Sound
+	auto sound_command = PlaySoundCommand("../Data/Sounds/Coily Snake Jump.wav");
+	sound_command.Execute();
 }
 
 std::unique_ptr<CoilyState> HatchedJumpingState::FixedUpdate()
 {
 	//Update pos
-	m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(m_goalPos, m_speed);
+	auto speed = m_speed * static_cast<float>(dae::Time::GetInstance().GetFixedDeltaTime());
+	m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(m_goalPos, speed);
 
 	if (m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition() == m_goalPos)
 	{

@@ -2,6 +2,8 @@
 #include "EggStaticState.h"
 #include "Texture2DRenderer.h"
 #include "GameObject.h"
+#include "GameTime.h"
+#include "QbertCommands.h"
 using namespace qbert;
 
 void EggJumpingState::OnEnter()
@@ -25,12 +27,17 @@ void EggJumpingState::OnEnter()
 	}
 
 	m_pGoalPosition = std::make_unique<IsometricGridPosition>(goal_pos, grid);
+
+	//Play Sound
+	auto sound_command = PlaySoundCommand("../Data/Sounds/Coily Egg Jump.wav");
+	sound_command.Execute();
 }
 
 std::unique_ptr<CoilyState> EggJumpingState::FixedUpdate()
 {
 	//Update pos
-	m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(m_pGoalPosition->position, m_speed);
+	auto speed = m_speed * static_cast<float>(dae::Time::GetInstance().GetFixedDeltaTime());
+	m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(m_pGoalPosition->position, speed);
 
 	if (m_pCoilyObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition() == m_pGoalPosition->position)
 	{

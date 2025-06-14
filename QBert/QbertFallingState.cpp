@@ -3,6 +3,7 @@
 #include "GameTime.h"
 #include "IsometricGridPositionComponent.h"
 #include "QbertStaticState.h"
+#include "QbertCommands.h"
 using namespace qbert;
 
 void QbertFallingState::OnEnter()
@@ -36,6 +37,15 @@ void QbertFallingState::OnEnter()
 		m_goalPos = glm::vec2{ 0,0 };
 	else
 		m_goalPos = glm::vec2(iso_pos.x + 10, iso_pos.y + 10);
+
+	auto lose_control_command = QbertLoseControlCommand(m_pQbertObject);
+	lose_control_command.Execute();
+}
+
+void QbertFallingState::OnExit()
+{
+	auto regain_control_command = QbertBindKeyboardCommand(m_pQbertObject);
+	regain_control_command.Execute();
 }
 
 std::unique_ptr<QbertState> QbertFallingState::FixedUpdate()

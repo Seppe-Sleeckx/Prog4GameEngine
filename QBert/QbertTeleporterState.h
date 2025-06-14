@@ -1,6 +1,7 @@
 #pragma once
 #include "QbertState.h"
 #include "GameObject.h"
+#include "ServiceLocator.h"
 namespace qbert
 {
 	class QbertTeleporterState final : public QbertState
@@ -17,7 +18,7 @@ namespace qbert
 	private:
 		const glm::vec2 m_goalPos{ -1.f,-1.f };
 		const float m_speed{ 2.f };
-
+		sound_id m_diskLiftSound{ -1 };
 		glm::vec3 m_originalScale{ 1.f,1.f,1.f };
 	};
 }

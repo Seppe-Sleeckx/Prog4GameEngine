@@ -3,6 +3,7 @@
 #include "IsometricGridPositionComponent.h"
 #include "Texture2DRenderer.h"
 #include "QbertFallingState.h"
+#include "QbertCommands.h"
 using namespace qbert;
 
 void QbertTeleporterState::OnEnter()
@@ -21,11 +22,24 @@ void QbertTeleporterState::OnEnter()
 	const SDL_Rect src_rect{ 224, 80, 32, 32 };
 	m_pQbertObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetSrcRect(src_rect);
 	m_pQbertObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetTexture("Qbert.png");
+
+	//play sound
+	m_diskLiftSound = dae::ServiceLocator::GetSoundSystem().LoadSound("../Data/Sounds/Disk Lift.wav");
+	if (m_diskLiftSound == -1)
+		return;
+	dae::ServiceLocator::GetSoundSystem().Play(m_diskLiftSound, 1.f);
 }
 
 void QbertTeleporterState::OnExit()
 {
 	m_pQbertObject.lock()->SetLocalScale(m_originalScale);
+
+	//stop sound
+	dae::ServiceLocator::GetSoundSystem().StopSound(m_diskLiftSound);
+
+	//play landing sound
+	auto play_sound_command = PlaySoundCommand("../Data/Sounds/Disk Land.wav");
+	play_sound_command.Execute();
 }
 
 std::unique_ptr<QbertState> QbertTeleporterState::FixedUpdate()

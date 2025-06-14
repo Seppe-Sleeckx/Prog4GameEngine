@@ -15,13 +15,13 @@ namespace qbert {
 
 	struct CubeLevelParameters
 	{
-		CubeLevelParameters() = delete;
+		CubeLevelParameters() = default;
 		CubeLevelParameters(const CubeColor start_color, const std::queue<CubeColor> future_colors, const CubeColor desired_color, bool looping = false) : StartColor{ start_color }, FutureColors{ future_colors }, DesiredColor{ desired_color }, Looping{ looping } {}
 
-		const CubeColor StartColor;
-		std::queue<CubeColor> FutureColors;
-		const CubeColor DesiredColor;
-		bool Looping;
+		CubeColor StartColor = CubeColor::Aquamarine_Red;
+		std::queue<CubeColor> FutureColors{};
+		CubeColor DesiredColor = CubeColor::Aquamarine_Blue;
+		bool Looping = false;
 	};
 }
 

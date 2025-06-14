@@ -10,6 +10,7 @@ namespace qbert
 		QbertFallingState(std::weak_ptr<dae::GameObject> pQbertObject, std::weak_ptr<Piramid> pPiramid, FacingDirection facing_direction) : QbertState(std::move(pQbertObject), std::move(pPiramid)), m_facingDirection{ facing_direction } {}
 
 		virtual void OnEnter() override;
+		virtual void OnExit() override;
 		virtual std::unique_ptr<QbertState> Update() override { return nullptr; }
 		virtual std::unique_ptr<QbertState> FixedUpdate() override;
 

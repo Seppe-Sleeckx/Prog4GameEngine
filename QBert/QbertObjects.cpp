@@ -111,10 +111,6 @@ std::shared_ptr<dae::GameObject> qbert::CreateQbert(std::shared_ptr<IsometricGri
 	texture_component->SetTexture("Qbert.png");
 	qbert->AddComponent(std::move(texture_component));
 
-	//Qbert behaviour component
-	auto qbert_behaviour_component = std::make_unique<qbert::QbertBehaviourComponent>(qbert, std::move(pPiramid));
-	qbert->AddComponent(std::move(qbert_behaviour_component));
-
 	//Health Component
 	auto qbert_health_subject = std::make_unique<dae::Subject>();
 	auto qbert_health_component = std::make_unique<qbert::HealthComponent>(qbert, 3, std::move(qbert_health_subject));
@@ -124,6 +120,10 @@ std::shared_ptr<dae::GameObject> qbert::CreateQbert(std::shared_ptr<IsometricGri
 	auto qbert_score_subject = std::make_unique<dae::Subject>();
 	auto qbert_score_component = std::make_unique<qbert::ScoreComponent>(qbert, std::move(qbert_score_subject));
 	qbert->AddComponent(std::move(qbert_score_component));
+
+	//Qbert behaviour component (last)
+	auto qbert_behaviour_component = std::make_unique<qbert::QbertBehaviourComponent>(qbert, std::move(pPiramid));
+	qbert->AddComponent(std::move(qbert_behaviour_component));
 
 	//Local Pos + Scale
 	qbert->SetLocalScale({ pGrid->tile_width / (16.f * 2.f), pGrid->tile_height / (16.f * 2.f), 1.f });

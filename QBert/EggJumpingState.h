@@ -15,7 +15,7 @@ namespace qbert
 	private:
 		static inline const SDL_Rect m_spriteSrcRect = SDL_Rect{ 80, 16, 16, 16 };
 		std::unique_ptr<IsometricGridPosition> m_pGoalPosition;
-		const float m_speed{ 0.01f };
+		const float m_speed{ 2.f };
 	};
 }
 

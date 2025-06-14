@@ -42,8 +42,32 @@ void MainMenuScene::OnExit()
 void LoadingLevelScene::OnEnter()
 {
 	//Bind enter to continue
-	
+	auto go_to_level_command = std::make_shared<qbert::LoadSinglePlayerSceneCommand>();
+	dae::InputManager::GetInstance().BindCommand(SDLK_BACKSPACE, std::move(go_to_level_command));
+
 	//Create loading level screen
+	auto level_display = std::make_shared<dae::GameObject>();
+	auto renderer_component = std::make_unique<dae::Texture2DRenderer>(level_display);
+	
+	switch (m_level)
+	{
+	case 1:
+		renderer_component->SetTexture("Level_01_Title.png");
+		break;
+	case 2:
+		renderer_component->SetTexture("Level_02_Title.png");
+		break;
+	case 3:
+		renderer_component->SetTexture("Level_03_Title.png");
+		break;
+	default:
+		break;
+	}
+
+	level_display->AddComponent(std::move(renderer_component));
+
+	level_display->SetWorldPosition(glm::vec3(320.f, 200.f, 0.f));
+	Add(level_display);
 }
 
 void LoadingLevelScene::OnExit()
@@ -60,9 +84,11 @@ void SinglePlayerScene::OnEnter()
 {
 	//Bind esc to pause
 
-	//Bind f2 to skip level
+	//Bind f1 to skip level
 	auto skip_round_command = std::make_shared<qbert::SkipRoundCommand>();
 	dae::InputManager::GetInstance().BindCommand(SDLK_F1, std::move(skip_round_command));
+
+	//Bind f2 to mute audio
 
 	//Grid
 	static constexpr float grid_size = 64.f;
@@ -73,7 +99,6 @@ void SinglePlayerScene::OnEnter()
 	auto piramid_object = std::make_shared<dae::GameObject>();
 	auto piramid_component = std::make_unique<qbert::PiramidComponent>(piramid_object, grid);
 	piramid_object->AddComponent(std::move(piramid_component));
-	piramid_object->SetLocalPosition(0.f, 0.f);
 	Add(piramid_object);
 
 	//Add Cubes
@@ -99,14 +124,8 @@ void SinglePlayerScene::OnEnter()
 
 	//Qbert (test)
 	auto qbert = qbert::CreateQbert(grid, piramid);
-	auto move_qbert_LU_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Left_Up);
-	auto move_qbert_LD_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Left_Down);
-	auto move_qbert_RU_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Right_Up);
-	auto move_qbert_RD_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Right_Down);
-	dae::InputManager::GetInstance().BindCommand(SDLK_w, move_qbert_LU_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_d, move_qbert_RU_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_a, move_qbert_LD_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_s, move_qbert_RD_command);
+	auto bind_keyboard_controls_command = QbertBindKeyboardCommand(qbert);
+	bind_keyboard_controls_command.Execute();
 	Add(qbert);
 
 	// -----
@@ -118,6 +137,7 @@ void SinglePlayerScene::OnEnter()
 	Add(health_display);
 
 	//ScoreDisplay
+	//TODO
 }
 
 void SinglePlayerScene::OnExit()

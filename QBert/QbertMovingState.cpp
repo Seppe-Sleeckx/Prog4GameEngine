@@ -5,6 +5,7 @@
 #include "QbertTeleporterState.h"
 #include "QbertFallingState.h"
 #include "GameTime.h"
+#include "QbertCommands.h"
 using namespace qbert;
 
 void QbertMovingState::OnEnter()
@@ -36,6 +37,10 @@ void QbertMovingState::OnEnter()
 	m_goalPos = goal_isometric_pos;
 	m_pQbertObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetSrcRect(src_rect);
 	m_pQbertObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetTexture("Qbert.png");
+
+	//Play sound
+	auto sound_command = PlaySoundCommand("../Data/Sounds/Qbert Jump.wav");
+	sound_command.Execute();
 }
 
 std::unique_ptr<QbertState> QbertMovingState::FixedUpdate()

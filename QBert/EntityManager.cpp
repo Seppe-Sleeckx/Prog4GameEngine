@@ -80,3 +80,12 @@ dae::GameObject* EntityManager::GetClosestQbertOnGrid(const IsometricGridPositio
 
 	return pClosestQbert;
 }
+
+void EntityManager::DeleteEnemies()
+{
+	for (const auto& enemy : m_enemies)
+	{
+		enemy.lock()->Destroy();
+	}
+	m_enemies.clear();
+}
