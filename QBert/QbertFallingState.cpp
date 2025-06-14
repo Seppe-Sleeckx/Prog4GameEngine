@@ -2,6 +2,7 @@
 #include "Texture2DRenderer.h"
 #include "GameTime.h"
 #include "IsometricGridPositionComponent.h"
+#include "QbertStaticState.h"
 using namespace qbert;
 
 void QbertFallingState::OnEnter()
@@ -43,6 +44,10 @@ std::unique_ptr<QbertState> QbertFallingState::FixedUpdate()
 	float speed = m_fallSpeed * static_cast<float>(dae::Time::GetInstance().GetFixedDeltaTime());
 	
 	m_pQbertObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->MoveTowards(m_goalPos, speed);
+	if (m_pQbertObject.lock().get()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition() == m_goalPos)
+	{
+		return std::make_unique<QbertStaticState>(m_pQbertObject, m_pPiramid, FacingDirection::Left_Down);
+	}
 
 	return nullptr;
 }

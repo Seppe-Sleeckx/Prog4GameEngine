@@ -169,7 +169,6 @@
     <ClCompile Include="HealthDisplayComponent.cpp" />
     <ClCompile Include="IsometricGridPositionComponent.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="Piramid.cpp" />
     <ClCompile Include="PiramidComponent.cpp" />
     <ClCompile Include="QbertBehaviourComponent.cpp" />
@@ -177,6 +176,7 @@
     <ClCompile Include="QbertFallingState.cpp" />
     <ClCompile Include="QbertMovingState.cpp" />
     <ClCompile Include="QbertObjects.cpp" />
+    <ClCompile Include="QbertScenes.cpp" />
     <ClCompile Include="QbertState.cpp" />
     <ClCompile Include="QbertStaticState.cpp" />
     <ClCompile Include="QbertTeleporterState.cpp" />
@@ -186,6 +186,7 @@
   <ItemGroup>
     <ClInclude Include="CoilyBehaviourComponent.h" />
     <ClInclude Include="CoilyState.h" />
+    <ClInclude Include="QbertScenes.h" />
     <ClInclude Include="QbertStaticState.h" />
     <ClInclude Include="StateHelpers.h" />
     <ClInclude Include="CubeColorComponent.h" />
@@ -198,7 +199,6 @@
     <ClInclude Include="HatchedStaticState.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="HealthDisplayComponent.h" />
-    <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="Piramid.h" />
     <ClInclude Include="PiramidComponent.h" />
     <ClInclude Include="QbertBehaviourComponent.h" />

@@ -2,14 +2,15 @@
 #include "Component.h"
 #include "TextComponent.h"
 #include "Observer.h"
+#include <vector>
 
-namespace dae
+namespace qbert
 {
-	class HealthDisplayComponent : public Component, public Observer
+	class HealthDisplayComponent final : public dae::Component, public dae::IObserver
 	{
 	public:
 		//Constructor
-		HealthDisplayComponent(const std::string& text, std::shared_ptr<Font> font, std::shared_ptr<GameObject> game_object);
+		HealthDisplayComponent(std::shared_ptr<dae::GameObject> game_object, std::shared_ptr<dae::GameObject> qBert);
 
 		//Destructor
 		virtual ~HealthDisplayComponent() override = default;
@@ -20,13 +21,11 @@ namespace dae
 		HealthDisplayComponent& operator=(const HealthDisplayComponent& other) = delete;
 		HealthDisplayComponent& operator=(HealthDisplayComponent&& other) = delete;
 
-		virtual void Update() override;
-		virtual void Render() const override;
 
-		virtual void Notify(const GameObject& game_object, const Event& event) override;
+		virtual void Notify(const dae::GameObject& game_object, const dae::Event& event) override;
 
 	private:
-		std::unique_ptr<TextComponent> m_textComponent;
+		std::vector<std::weak_ptr<dae::GameObject>> m_hearts;
 	};
 }
 

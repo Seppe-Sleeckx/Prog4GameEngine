@@ -46,6 +46,11 @@ public:
         m_ControllerButtonCommandBindings.erase(binding);
     }
 
+    void UnBindAllCommands()
+    {
+        m_ControllerButtonCommandBindings.clear();
+    }
+
 private:
     std::unordered_map<WORD, std::shared_ptr<Command>> m_ControllerButtonCommandBindings;
 };
@@ -77,3 +82,7 @@ void ControllerInputManager::UnBindCommand(WORD binding)
     pimpl->UnBindCommand(binding);
 }
 
+void ControllerInputManager::UnBindAllCommands()
+{
+    pimpl->UnBindAllCommands();
+}

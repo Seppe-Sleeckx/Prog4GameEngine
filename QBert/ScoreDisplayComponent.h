@@ -5,7 +5,7 @@
 
 namespace dae
 {
-	class ScoreDisplayComponent : public Component, public Observer
+	class ScoreDisplayComponent : public Component, public IObserver
 	{
 	public:
 		//Constructor

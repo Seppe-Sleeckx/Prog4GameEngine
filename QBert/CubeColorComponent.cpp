@@ -1,7 +1,7 @@
 #include "CubeColorComponent.h"
 #include "GameObject.h"
 #include "Texture2DRenderer.h"
-using namespace dae;
+using namespace qbert;
 
 
 void CubeColorComponent::SetNewCubeColor(const qbert::CubeColor new_cube_color)
@@ -35,7 +35,7 @@ void CubeColorComponent::SetNewCubeColor(const qbert::CubeColor new_cube_color)
 		break;
 	}	
 
-	auto texture2d_renderer = GetOwner()->GetComponentByType<Texture2DRenderer>();
+	auto texture2d_renderer = GetOwner()->GetComponentByType<dae::Texture2DRenderer>();
 	if (texture2d_renderer)
 	{
 		texture2d_renderer->SetSrcRect(new_src_rect);

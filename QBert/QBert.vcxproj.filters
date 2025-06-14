@@ -87,9 +87,6 @@
     <ClCompile Include="HealthDisplayComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="MovementComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="CoilyBehaviourComponent.cpp">
       <Filter>Source Files\Entities\Coily</Filter>
     </ClCompile>
@@ -150,6 +147,9 @@
     <ClCompile Include="QbertStaticState.cpp">
       <Filter>Source Files\Entities\Qbert\FSM</Filter>
     </ClCompile>
+    <ClCompile Include="QbertScenes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPSComponent.h">
@@ -162,9 +162,6 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="IsometricGridPositionComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="ScoreDisplayComponent.h">
@@ -235,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="QbertStaticState.h">
       <Filter>Header Files\Entities\Qbert\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="QbertScenes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

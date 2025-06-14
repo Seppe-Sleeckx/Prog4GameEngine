@@ -9,22 +9,12 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "InputManager.h"
-#include "Texture2DRenderer.h"
 #include "GameObject.h"
 #include "Scene.h"
-#include "TextComponent.h"
-#include "FPSComponent.h"
-#include "MovementComponent.h"
-#include "HealthComponent.h"
-#include "HealthDisplayComponent.h"
-#include "ScoreDisplayComponent.h"
 #include "ServiceLocator.h"
 #include "SDL_SoundSystem.h"
 #include "Logging_SoundSystem.h"
-#include "Subject.h"
-#include "Piramid.h"
-#include "PiramidComponent.h"
-#include "QbertCommands.h"
+#include "QbertScenes.h"
 
 using namespace dae;
 void load()
@@ -36,16 +26,7 @@ void load()
 #endif
 	srand(static_cast<unsigned int>(time(nullptr)));
 
-	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
-	dae::SceneManager::GetInstance().SetActiveScene(scene.GetName());
-
-	//Make FPS
-	auto fpsObject = std::make_shared<dae::GameObject>();
-	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 50);
-	auto fpsComponent = std::make_unique<dae::FPSComponent>("FPS: ", std::move(font), fpsObject);
-	fpsObject->SetLocalPosition(220, 70);
-	fpsObject->AddComponent(std::move(fpsComponent));
-	scene.Add(fpsObject);
+	
 
 	//Make second character
 	//auto second_character_object = std::make_shared<dae::GameObject>();
@@ -125,73 +106,29 @@ void load()
 	/*auto Play_sound_command = std::make_shared<PlaySoundCommand>("../data/Victory_SFX.wav");
 	InputManager::GetInstance().BindCommand(SDLK_j, Play_sound_command);*/
 
-	//Controls explanation
-	/*auto keyboard_controls_text_object = std::make_shared<dae::GameObject>();
-	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 13);
-	auto text_component = std::make_unique<dae::TextComponent>("Controls player 1: (Take damage: SPACE) (increase score: Z)", std::move(font), keyboard_controls_text_object);
-	keyboard_controls_text_object->AddComponent(std::move(text_component));
-	keyboard_controls_text_object->SetLocalPosition(20.f, 140.f);
-	scene.Add(keyboard_controls_text_object);*/
+	//Main menu
+	auto main_menu_scene = std::make_shared<qbert::MainMenuScene>("MainMenu");
+	dae::SceneManager::GetInstance().AddScene(std::move(main_menu_scene));
 
-	/*auto controller_controls_text_object = std::make_shared<dae::GameObject>();
-	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 13);
-	auto second_text_component = std::make_unique<dae::TextComponent>("Controls player 2: (Take damage: X) (increase score: A)", std::move(font), controller_controls_text_object);
-	controller_controls_text_object->AddComponent(std::move(second_text_component));
-	controller_controls_text_object->SetLocalPosition(20.f, 160.f);
-	scene.Add(controller_controls_text_object);
-
-	auto extra_controls_text_object = std::make_shared<dae::GameObject>();
-	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 13);
-	auto third_text_component = std::make_unique<dae::TextComponent>("Controls sound: (Play sound: J)", std::move(font), extra_controls_text_object);
-	extra_controls_text_object->AddComponent(std::move(third_text_component));
-	extra_controls_text_object->SetLocalPosition(20.f, 300.f);
-	scene.Add(extra_controls_text_object);*/
+	//Loading Level 1
+	auto loading_level_1_scene = std::make_shared<qbert::LoadingLevelScene>("LoadingLevel1", 1);
+	dae::SceneManager::GetInstance().AddScene(std::move(loading_level_1_scene));
+	//Loading Level 2
+	auto loading_level_2_scene = std::make_shared<qbert::LoadingLevelScene>("LoadingLevel2", 2);
+	dae::SceneManager::GetInstance().AddScene(std::move(loading_level_2_scene));
+	//Loading Level 3
+	auto loading_level_3_scene = std::make_shared<qbert::LoadingLevelScene>("LoadingLevel3", 3);
+	dae::SceneManager::GetInstance().AddScene(std::move(loading_level_3_scene));
 
 
-	///QBERT
+	//Single player scene
+	auto singleplayer_scene = std::make_shared<qbert::SinglePlayerScene>(	"SinglePlayerScene");
+	dae::SceneManager::GetInstance().AddScene(std::move(singleplayer_scene));
 
-	//Grid
-	static constexpr float grid_size = 64.f;
-	auto grid = std::make_shared<IsometricGrid>(grid_size, grid_size);
-	grid->origin = glm::vec2{ 320.f, 75.f };
 
-	//Piramid
-	auto piramid_object = std::make_shared<dae::GameObject>();
-	auto piramid_component = std::make_unique<qbert::PiramidComponent>(piramid_object, grid);
-	piramid_object->AddComponent(std::move(piramid_component));
-	piramid_object->SetLocalPosition(0.f, 0.f);
-	scene.Add(piramid_object);
-
-	//Add Cubes
-	auto piramid = piramid_object->GetComponentByType<qbert::PiramidComponent>()->GetPiramid();
-	auto cubes = piramid->GetCubes();
-	for (const auto& cube : cubes)
-	{
-		scene.Add(cube);
-	}
-	//Add Teleporters
-	auto teleporters = piramid->GetTeleporters();
-	for (const auto& teleporter : teleporters)
-	{
-		scene.Add(teleporter);
-	}
-
-	//Coily (test)
-	auto coily = qbert::CreateCoily(grid, piramid);
-	scene.Add(coily);
-
-	//Qbert (test)
-	auto qbert = qbert::CreateQbert(grid, piramid);
-	auto move_qbert_LU_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Left_Up);
-	auto move_qbert_LD_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Left_Down);
-	auto move_qbert_RU_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Right_Up);
-	auto move_qbert_RD_command = std::make_shared<qbert::MoveQbertCommand>(qbert, qbert::FacingDirection::Right_Down);
-	dae::InputManager::GetInstance().BindCommand(SDLK_w, move_qbert_LU_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_d, move_qbert_RU_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_a, move_qbert_LD_command);
-	dae::InputManager::GetInstance().BindCommand(SDLK_s, move_qbert_RD_command);
-	scene.Add(qbert);
 	
+	//Set start scene
+	dae::SceneManager::GetInstance().SetActiveScene("SinglePlayerScene");
 };
 
 int main(int, char* []) {

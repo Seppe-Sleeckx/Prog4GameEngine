@@ -3,12 +3,12 @@
 using namespace dae;
 
 
-void Subject::AddObserver(Observer* pObserver)
+void Subject::AddObserver(IObserver* pObserver)
 {
 	m_Observers.emplace_back(pObserver);
 }
 
-bool Subject::RemoveObserver(Observer* pObserver)
+bool Subject::RemoveObserver(IObserver* pObserver)
 {
 	auto it = std::find(m_Observers.begin(), m_Observers.end(), pObserver);
 	if (it == m_Observers.end())
@@ -20,7 +20,7 @@ bool Subject::RemoveObserver(Observer* pObserver)
 
 void Subject::Notify(const GameObject& game_object, const Event& event)
 {
-	for (Observer* pObserver : m_Observers)
+	for (IObserver* pObserver : m_Observers)
 	{
 		pObserver->Notify(game_object, event);
 	}

@@ -17,11 +17,11 @@ namespace dae
 		Subject& operator=(Subject&& other) = delete;
 
 
-		void AddObserver(Observer* pObserver);
-		bool RemoveObserver(Observer* pObserver);
+		void AddObserver(IObserver* pObserver);
+		bool RemoveObserver(IObserver* pObserver);
 		void Notify(const GameObject& game_object, const Event& event);
 	private:
-		std::vector<Observer*> m_Observers;
+		std::vector<IObserver*> m_Observers;
 	};
 }
 

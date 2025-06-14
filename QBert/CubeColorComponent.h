@@ -14,14 +14,13 @@ namespace qbert {
 	};
 }
 
-namespace dae
+namespace qbert
 {
-	class CubeColorComponent final : public Component
+	class CubeColorComponent final : public dae::Component
 	{
 	public:
-
-	private:
 		void SetNewCubeColor(const qbert::CubeColor new_color);
+	private:
 
 		qbert::CubeColor m_cubeColor{ qbert::CubeColor::Aquamarine_Red };
 	};

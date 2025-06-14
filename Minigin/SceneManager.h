@@ -12,7 +12,7 @@ namespace dae
 	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
-		Scene& CreateScene(const std::string& name);
+		void AddScene(const std::shared_ptr<Scene> pScene);
 
 		void Update();
 		void FixedUpdate();
@@ -22,10 +22,11 @@ namespace dae
 		Scene* SetActiveScene(const std::string& name);
 		Scene* GetScene(const std::string& name);
 		Scene* GetActiveScene() { return m_activeScene->get(); }
+
 	private:
 		friend class Singleton<SceneManager>;
-		SceneManager() = default;
-		std::vector<std::shared_ptr<Scene>> m_scenes;
+		SceneManager(){ m_activeScene = m_scenes.end(); };
+		std::vector<std::shared_ptr<Scene>> m_scenes{};
 		std::vector<std::shared_ptr<Scene>>::iterator m_activeScene;
 	};
 }

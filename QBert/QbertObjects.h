@@ -22,4 +22,18 @@ namespace qbert
 
 	//TextBalloon
 	std::shared_ptr <dae::GameObject> CreateTextBalloon(std::shared_ptr<dae::GameObject> pParent);
+
+
+	// -----
+	// UI
+	// -----
+
+	//HealthDisplay
+	std::shared_ptr <dae::GameObject> CreateHealthDisplay(std::shared_ptr<dae::GameObject> pQbert, const glm::vec2& pos);
+
+	//ScoreDisplay
+	//TODO
+
+	//LevelDisplay
+	//TODO
 }

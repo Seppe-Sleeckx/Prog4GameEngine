@@ -33,11 +33,12 @@ void dae::SceneManager::RenderUI()
 
 }
 
-dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
+void dae::SceneManager::AddScene(const std::shared_ptr<dae::Scene> pScene)
 {
-	const auto& scene = std::shared_ptr<Scene>(new Scene(name));
-	m_scenes.push_back(scene);
-	return *scene;
+	bool change_active_scene = m_activeScene == m_scenes.end();
+	m_scenes.push_back(pScene);
+	if (change_active_scene)
+		m_activeScene = m_scenes.end();
 }
 
 dae::Scene* dae::SceneManager::SetActiveScene(const std::string& name)
@@ -45,7 +46,10 @@ dae::Scene* dae::SceneManager::SetActiveScene(const std::string& name)
 	auto it = std::find_if(m_scenes.begin(), m_scenes.end(), [name](auto scene) { return scene->GetName() == name; });
 	if (it != m_scenes.end())
 	{
+		if(m_activeScene != m_scenes.end())
+			m_activeScene->get()->OnExit();
 		m_activeScene = it;
+		m_activeScene->get()->OnEnter();
 		return m_activeScene->get();
 	}
 	return nullptr;

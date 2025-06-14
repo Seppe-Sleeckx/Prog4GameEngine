@@ -2,6 +2,8 @@
 #include "CoilyBehaviourComponent.h"
 #include "QbertBehaviourComponent.h"
 #include "IsometricGridPositionComponent.h"
+#include "HealthDisplayComponent.h"
+#include "HealthComponent.h"
 #include "EntityManager.h"
 
 
@@ -107,6 +109,11 @@ std::shared_ptr<dae::GameObject> qbert::CreateQbert(std::shared_ptr<IsometricGri
 	auto qbert_behaviour_component = std::make_unique<qbert::QbertBehaviourComponent>(qbert, std::move(pPiramid));
 	qbert->AddComponent(std::move(qbert_behaviour_component));
 
+	//Health Component
+	auto qbert_health_subject = std::make_unique<dae::Subject>();
+	auto qbert_health_component = std::make_unique<qbert::HealthComponent>(qbert, 3, std::move(qbert_health_subject));
+	qbert->AddComponent(std::move(qbert_health_component));
+
 	//Local Pos + Scale
 	qbert->SetLocalScale({ pGrid->tile_width / (16.f * 2.f), pGrid->tile_height / (16.f * 2.f), 1.f });
 
@@ -118,7 +125,6 @@ std::shared_ptr<dae::GameObject> qbert::CreateQbert(std::shared_ptr<IsometricGri
 }
 
 #pragma endregion
-
 
 // -----
 // TextBalloon
@@ -140,5 +146,24 @@ std::shared_ptr<dae::GameObject> qbert::CreateTextBalloon(std::shared_ptr<dae::G
 	text_balloon->SetParent(pParent.get(), false);
 
 	return text_balloon;
+}
+#pragma endregion
+
+// -----
+// HealthDisplay
+// -----
+#pragma region HealthDisplay
+std::shared_ptr <dae::GameObject> qbert::CreateHealthDisplay(std::shared_ptr<dae::GameObject> pQbert, const glm::vec2& pos)
+{
+	auto health_display = std::make_shared<dae::GameObject>();
+
+	//Health display component
+	auto health_display_component = std::make_unique<qbert::HealthDisplayComponent>(health_display, pQbert);
+	health_display->AddComponent(std::move(health_display_component));
+
+	//set world pos
+	health_display->SetLocalPosition(glm::vec3{ pos.x, pos.y, 0.f });
+
+	return health_display;
 }
 #pragma endregion

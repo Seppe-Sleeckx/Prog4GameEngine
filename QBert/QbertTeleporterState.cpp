@@ -11,7 +11,7 @@ void QbertTeleporterState::OnEnter()
 	m_originalScale = m_pQbertObject.lock()->GetLocalTransform().GetScale();
 
 	//set new Scale
-	m_pQbertObject.lock()->SetLocalScale(glm::vec3{ 1.f,1.f,1.f });
+	m_pQbertObject.lock()->SetLocalScale(glm::vec3{ 1.2f,1.2f,1.2f });
 
 	//Delete teleporter at current location 
 	const glm::vec2& iso_pos = m_pQbertObject.lock()->GetComponentByType<qbert::IsometricGridPositionComponent>()->GetIsometricPosition();

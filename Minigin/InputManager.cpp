@@ -31,3 +31,9 @@ void InputManager::UnBindCommand(WORD binding)
 {
 	ControllerInputManager::GetInstance().UnBindCommand(binding);
 }
+
+void InputManager::UnBindAllCommands()
+{
+	KeyboardInputManager::GetInstance().UnBindAllCommands();
+	ControllerInputManager::GetInstance().UnBindAllCommands();
+}

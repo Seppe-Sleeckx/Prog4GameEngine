@@ -16,6 +16,7 @@ namespace dae
 		void BindCommand(WORD binding, std::shared_ptr<Command> pCommand);
 		void UnBindCommand(SDL_KeyCode binding);
 		void UnBindCommand(WORD binding);
+		void UnBindAllCommands();
 	};
 
 }
