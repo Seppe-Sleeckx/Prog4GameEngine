@@ -34,8 +34,8 @@ void QbertStaticState::OnEnter()
 	m_pQbertObject.lock()->GetComponentByType<dae::Texture2DRenderer>()->SetTexture("Qbert.png");
 
 	//If not on valid cube spawn textballoon, take damage and disable commands
-	bool on_cube = m_pPiramid.lock()->GetCubeAtIsometricPos(m_pQbertObject.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition()) != nullptr;
-	if (!on_cube)
+	auto cube = m_pPiramid.lock()->GetCubeAtIsometricPos(m_pQbertObject.lock()->GetComponentByType<IsometricGridPositionComponent>()->GetIsometricPosition());
+	if (cube == nullptr)
 	{
 		auto text_balloon = qbert::CreateTextBalloon(m_pQbertObject.lock());
 		dae::SceneManager::GetInstance().GetActiveScene()->Add(std::move(text_balloon));
@@ -43,5 +43,10 @@ void QbertStaticState::OnEnter()
 		//Call Take Damage command
 		QbertTakeDamageCommand take_damage_command{ m_pQbertObject };
 		take_damage_command.Execute();
+	}
+	else //Change color of cube were on
+	{
+		ChangeCubeColorCommand change_cube_color_command{ m_pQbertObject, cube };
+		change_cube_color_command.Execute();
 	}
 }

@@ -1,5 +1,6 @@
 #include "PiramidComponent.h"
 #include "IsometricGridPositionComponent.h"
+#include "CubeColorComponent.h"
 #include <random>
 using namespace qbert;
 PiramidComponent::PiramidComponent(std::shared_ptr<dae::GameObject> pOwner, std::shared_ptr<IsometricGrid> pGrid) : dae::Component(pOwner),

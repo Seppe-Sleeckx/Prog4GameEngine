@@ -168,6 +168,7 @@
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="HealthDisplayComponent.cpp" />
     <ClCompile Include="IsometricGridPositionComponent.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Piramid.cpp" />
     <ClCompile Include="PiramidComponent.cpp" />
@@ -186,6 +187,7 @@
   <ItemGroup>
     <ClInclude Include="CoilyBehaviourComponent.h" />
     <ClInclude Include="CoilyState.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="QbertScenes.h" />
     <ClInclude Include="QbertStaticState.h" />
     <ClInclude Include="StateHelpers.h" />

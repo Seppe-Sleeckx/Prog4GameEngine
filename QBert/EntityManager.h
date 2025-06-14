@@ -24,6 +24,8 @@ namespace qbert
 		dae::GameObject* GetClosestEnemyOnGrid(const IsometricGridPosition& pos);
 		dae::GameObject* GetClosestQbertOnGrid(const IsometricGridPosition& pos);
 
+		void Reset() { m_enemies.clear(); m_qberts.clear(); };
+
 		void AddEnemy(std::weak_ptr<dae::GameObject> enemy_object) { m_enemies.push_back(std::move(enemy_object)); }
 		void AddQbert(std::weak_ptr<dae::GameObject> qbert_object) { m_qberts.push_back(std::move(qbert_object)); }
 	private:

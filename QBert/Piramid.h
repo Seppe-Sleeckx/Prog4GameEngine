@@ -32,6 +32,8 @@ namespace qbert
 		std::vector<std::shared_ptr<dae::GameObject>> GetCubes() const { return m_Cubes; }
 		std::vector<std::shared_ptr<dae::GameObject>> GetTeleporters() const { return m_Teleporters; }
 
+		bool IsPiramidCompleted() const;
+
 		static constexpr int num_layers{ 7 };
 	private:
 		std::shared_ptr<IsometricGrid> m_pGrid;

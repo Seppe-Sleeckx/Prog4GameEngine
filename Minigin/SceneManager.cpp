@@ -63,3 +63,14 @@ dae::Scene* dae::SceneManager::GetScene(const std::string& name)
 
 	return nullptr;
 }
+
+dae::Scene* dae::SceneManager::RestartCurrentScene()
+{
+	if (m_activeScene == m_scenes.end())
+		return nullptr;
+
+	m_activeScene->get()->OnExit();
+	m_activeScene->get()->RemoveAll();
+	m_activeScene->get()->OnEnter();
+	return m_activeScene->get();
+}

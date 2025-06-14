@@ -20,6 +20,7 @@ namespace dae
 		void RenderUI();
 
 		Scene* SetActiveScene(const std::string& name);
+		Scene* RestartCurrentScene();
 		Scene* GetScene(const std::string& name);
 		Scene* GetActiveScene() { return m_activeScene->get(); }
 

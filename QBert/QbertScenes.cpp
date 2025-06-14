@@ -8,6 +8,7 @@
 #include "PiramidComponent.h"
 #include "HealthDisplayComponent.h"
 #include "QbertCommands.h"
+#include "LevelManager.h"
 using namespace qbert;
 
 // -----
@@ -59,8 +60,9 @@ void SinglePlayerScene::OnEnter()
 {
 	//Bind esc to pause
 
-
-	//QBERT
+	//Bind f2 to skip level
+	auto skip_round_command = std::make_shared<qbert::SkipRoundCommand>();
+	dae::InputManager::GetInstance().BindCommand(SDLK_F1, std::move(skip_round_command));
 
 	//Grid
 	static constexpr float grid_size = 64.f;
@@ -88,6 +90,9 @@ void SinglePlayerScene::OnEnter()
 		Add(teleporter);
 	}
 
+	//Set current level piramid
+	LevelManager::GetInstance().SetPiramid(piramid);
+
 	//Coily (test)
 	auto coily = qbert::CreateCoily(grid, piramid);
 	Add(coily);
@@ -111,6 +116,8 @@ void SinglePlayerScene::OnEnter()
 	//HealthDisplay
 	auto health_display = qbert::CreateHealthDisplay(qbert, glm::vec2{ 16, 128 });
 	Add(health_display);
+
+	//ScoreDisplay
 }
 
 void SinglePlayerScene::OnExit()

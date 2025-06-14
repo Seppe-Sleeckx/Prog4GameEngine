@@ -37,4 +37,11 @@ namespace qbert
 		std::weak_ptr<dae::GameObject> m_pQbert;
 		dae::GameObject* const m_pCube;
 	};
+
+	class SkipRoundCommand final : public dae::Command
+	{
+	public:
+		SkipRoundCommand() = default;
+		virtual void Execute() override;
+	};
 }

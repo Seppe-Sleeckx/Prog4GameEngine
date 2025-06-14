@@ -2,9 +2,12 @@
 #include "CoilyBehaviourComponent.h"
 #include "QbertBehaviourComponent.h"
 #include "IsometricGridPositionComponent.h"
+#include "CubeColorComponent.h"
 #include "HealthDisplayComponent.h"
 #include "HealthComponent.h"
 #include "EntityManager.h"
+#include "LevelManager.h"
+#include "ScoreComponent.h"
 
 
 // -----
@@ -13,21 +16,24 @@
 #pragma region LevelCube
 std::shared_ptr<dae::GameObject> qbert::CreateLevelCube(std::shared_ptr<IsometricGrid> pGrid)
 {
-	//TEMP, CHANGE LATER USING A MAPPING BETWEEN LEVEL AND COLOR,
-	static constexpr SDL_Rect src_rect{ .x = 0, .y = 160, .w = 32, .h = 32 };
-
-
 	auto level_cube = std::make_shared<dae::GameObject>();
 
-	auto textureComponent = std::make_unique<dae::Texture2DRenderer>(level_cube);
-	textureComponent->SetTexture("Qbert.png");
-	textureComponent->SetSrcRect(src_rect);
-	level_cube->AddComponent(std::move(textureComponent));
+	auto texture_component = std::make_unique<dae::Texture2DRenderer>(level_cube);
+	texture_component->SetTexture("Qbert.png");
+	level_cube->AddComponent(std::move(texture_component));
 
-	auto isometricGridPositionComponent = std::make_unique<qbert::IsometricGridPositionComponent>(level_cube, pGrid);
-	isometricGridPositionComponent->SetIsometricPosition(pGrid->WorldToIsometricGridSpace(level_cube->GetWorldTransform().GetPosition()));
-	level_cube->AddComponent(std::move(isometricGridPositionComponent));
+	//Isometric grid position component
+	auto isometric_grid_position_component = std::make_unique<qbert::IsometricGridPositionComponent>(level_cube, pGrid);
+	isometric_grid_position_component->SetIsometricPosition(pGrid->WorldToIsometricGridSpace(level_cube->GetWorldTransform().GetPosition()));
+	level_cube->AddComponent(std::move(isometric_grid_position_component));
 
+	//CubeColor component
+	const auto& cube_color_params = LevelManager::GetInstance().GetCurrentCubeLevelParameters();
+	auto cube_color_component = std::make_unique<qbert::CubeColorComponent>(level_cube, cube_color_params);
+	level_cube->AddComponent(std::move(cube_color_component));
+
+	//Set local pos + scale
+	auto src_rect = level_cube->GetComponentByType<dae::Texture2DRenderer>()->GetSrcRect();
 	level_cube->SetLocalScale({ pGrid->tile_width / src_rect.w, pGrid->tile_height / src_rect.h, 1.f });
 
 	return level_cube;
@@ -113,6 +119,11 @@ std::shared_ptr<dae::GameObject> qbert::CreateQbert(std::shared_ptr<IsometricGri
 	auto qbert_health_subject = std::make_unique<dae::Subject>();
 	auto qbert_health_component = std::make_unique<qbert::HealthComponent>(qbert, 3, std::move(qbert_health_subject));
 	qbert->AddComponent(std::move(qbert_health_component));
+
+	//Score Component
+	auto qbert_score_subject = std::make_unique<dae::Subject>();
+	auto qbert_score_component = std::make_unique<qbert::ScoreComponent>(qbert, std::move(qbert_score_subject));
+	qbert->AddComponent(std::move(qbert_score_component));
 
 	//Local Pos + Scale
 	qbert->SetLocalScale({ pGrid->tile_width / (16.f * 2.f), pGrid->tile_height / (16.f * 2.f), 1.f });

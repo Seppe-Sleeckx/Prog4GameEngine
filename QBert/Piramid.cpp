@@ -1,6 +1,7 @@
 #include "Piramid.h"
 #include "QbertObjects.h"
 #include "IsometricGridPositionComponent.h"
+#include "CubeColorComponent.h"
 using namespace qbert;
 
 bool Piramid::AddCubeToPiramid(std::shared_ptr<dae::GameObject> pCube)
@@ -66,4 +67,16 @@ dae::GameObject* const Piramid::GetTeleporterAtWorldPos(const glm::vec2& world_p
 		return it->get();
 
 	return nullptr;
+}
+
+bool Piramid::IsPiramidCompleted() const
+{
+	auto cubes = m_Cubes;
+	for (const auto& cube : cubes)
+	{
+		auto cube_color_component = cube->GetComponentByType<qbert::CubeColorComponent>();
+		if (!cube_color_component->IsAtDesiredColor())
+			return false;
+	}
+	return true;
 }

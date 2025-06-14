@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
-#include <map>
 #include "SDL_rect.h"
+#include <queue>
 namespace qbert {
 	enum class CubeColor
 	{
@@ -12,6 +12,17 @@ namespace qbert {
 		Brown_Sand,
 		Brown_Green,
 	};
+
+	struct CubeLevelParameters
+	{
+		CubeLevelParameters() = delete;
+		CubeLevelParameters(const CubeColor start_color, const std::queue<CubeColor> future_colors, const CubeColor desired_color, bool looping = false) : StartColor{ start_color }, FutureColors{ future_colors }, DesiredColor{ desired_color }, Looping{ looping } {}
+
+		const CubeColor StartColor;
+		std::queue<CubeColor> FutureColors;
+		const CubeColor DesiredColor;
+		bool Looping;
+	};
 }
 
 namespace qbert
@@ -19,9 +30,17 @@ namespace qbert
 	class CubeColorComponent final : public dae::Component
 	{
 	public:
-		void SetNewCubeColor(const qbert::CubeColor new_color);
-	private:
+		CubeColorComponent(std::shared_ptr<dae::GameObject> pOwner, const CubeLevelParameters& params);
+		virtual ~CubeColorComponent() = default;
 
-		qbert::CubeColor m_cubeColor{ qbert::CubeColor::Aquamarine_Red };
+		bool IsAtDesiredColor() const { return m_currentColor == m_desiredColor; }
+		void SetNextColor();
+	private:
+		void SetNewCubeColor(const qbert::CubeColor new_color);
+
+		qbert::CubeColor m_currentColor;
+		std::queue<qbert::CubeColor> m_futureColors;
+		qbert::CubeColor m_desiredColor;
+		bool m_looping;
 	};
 }

@@ -2,12 +2,12 @@
 #include "Component.h"
 #include "Subject.h"
 
-namespace dae
+namespace qbert
 {
-	class ScoreComponent : public Component
+	class ScoreComponent : public dae::Component
 	{
 	public:
-		ScoreComponent(std::shared_ptr<GameObject> game_object, std::unique_ptr<Subject> subject) : Component(game_object), m_Subject{ std::move(subject) } {};
+		ScoreComponent(std::shared_ptr<dae::GameObject> game_object, std::unique_ptr<dae::Subject> subject) : dae::Component(game_object), m_Subject{ std::move(subject) } {};
 		virtual ~ScoreComponent() override = default;
 		//Rule of five
 		ScoreComponent(const ScoreComponent& other) = delete;
@@ -16,14 +16,14 @@ namespace dae
 		ScoreComponent& operator=(ScoreComponent&& other) = delete;
 
 
-		void IncreaseScore(float score_amount);
-		float GetScore() { return m_Score; };
+		void IncreaseScore(int score_amount);
+		int GetScore() { return m_Score; };
 
-		Subject* const GetSubject() const { return m_Subject.get(); }
+		dae::Subject* const GetSubject() const { return m_Subject.get(); }
 
 	private:
-		float m_Score = 0.f;
-		std::unique_ptr<Subject> m_Subject;
+		int m_Score = 0;
+		std::unique_ptr<dae::Subject> m_Subject;
 	};
 }
 

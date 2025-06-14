@@ -23,6 +23,7 @@ namespace dae
 		virtual void Render() const override;
 		void SetTexture(const std::string& filename);
 		void SetSrcRect(const SDL_Rect& src_rect);
+		const SDL_Rect& GetSrcRect() { return *m_srcRect.get(); }
 
 	private:
 		std::shared_ptr<Texture2D> m_texture;
